@@ -1,16 +1,12 @@
 #' @include Driver.R
 NULL
 
-LoggingDBIConnection <- function(conn) {
-  new("LoggingDBIConnection", conn = conn)
-}
-
 #' @rdname DBI
 #' @export
 setClass(
   "LoggingDBIConnection",
   contains = "DBIConnection",
-  slots = list(conn = "DBIConnection")
+  slots = list(conn = "DBIConnection", log_call = "function")
 )
 
 #' @rdname DBI
@@ -19,7 +15,7 @@ setClass(
 setMethod(
   "show", "LoggingDBIConnection",
   function(object) {
-    cat("<LoggingDBIConnection>")
+    cat("<LoggingDBIConnection>\n")
     show(object@conn)
   })
 
@@ -43,7 +39,7 @@ setMethod(
 setMethod(
   "dbDisconnect", "LoggingDBIConnection",
   function(conn, ...) {
-    log_call(dbDisconnect(conn@conn, !!! enquos(...)))
+    conn@log_call(dbDisconnect(conn@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -54,6 +50,15 @@ setMethod(
   function(conn, statement, ...) {
     res <- log_call(dbSendQuery(conn@conn, statement, !!! enquos(...)))
     LoggingDBIResult(res)
+  })
+
+#' @rdname DBI
+#' @inheritParams DBI::dbGetQuery
+#' @export
+setMethod(
+  "dbGetQuery", c("LoggingDBIConnection", "character"),
+  function(conn, statement, ...) {
+    conn@log_call(dbGetQuery(conn@conn, statement, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -111,7 +116,7 @@ setMethod(
 setMethod(
   "dbWriteTable", c("LoggingDBIConnection", "character", "data.frame"),
   function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
-    log_call(dbWriteTable(conn@conn, name = name, value = value, overwrite = overwrite, append = append, !!! enquos(...)))
+    conn@log_call(dbWriteTable(conn@conn, name = name, value = value, overwrite = overwrite, append = append, !!! enquos(...)))
   })
 
 #' @rdname DBI

@@ -13,13 +13,14 @@
 \alias{show,LoggingDBIConnection-method}
 \alias{dbIsValid,LoggingDBIConnection-method}
 \alias{dbDisconnect,LoggingDBIConnection-method}
-\alias{dbSendQuery,LoggingDBIConnection,character-method}
+\alias{dbSendQuery,LoggingDBIConnection-method}
+\alias{dbGetQuery,LoggingDBIConnection,ANY-method}
 \alias{dbSendStatement,LoggingDBIConnection,character-method}
 \alias{dbDataType,LoggingDBIConnection-method}
 \alias{dbQuoteString,LoggingDBIConnection,character-method}
 \alias{dbQuoteIdentifier,LoggingDBIConnection,character-method}
 \alias{dbUnquoteIdentifier,LoggingDBIConnection,SQL-method}
-\alias{dbWriteTable,LoggingDBIConnection,character,data.frame-method}
+\alias{dbWriteTable,LoggingDBIConnection,ANY-method}
 \alias{dbReadTable,LoggingDBIConnection,character-method}
 \alias{dbListTables,LoggingDBIConnection-method}
 \alias{dbExistsTable,LoggingDBIConnection,character-method}
@@ -59,8 +60,9 @@
 
 \S4method{dbDisconnect}{LoggingDBIConnection}(conn, ...)
 
-\S4method{dbSendQuery}{LoggingDBIConnection,character}(conn, statement,
-  ...)
+\S4method{dbSendQuery}{LoggingDBIConnection}(conn, statement, ...)
+
+\S4method{dbGetQuery}{LoggingDBIConnection,ANY}(conn, statement, ...)
 
 \S4method{dbSendStatement}{LoggingDBIConnection,character}(conn, statement,
   ...)
@@ -73,8 +75,8 @@
 
 \S4method{dbUnquoteIdentifier}{LoggingDBIConnection,SQL}(conn, x, ...)
 
-\S4method{dbWriteTable}{LoggingDBIConnection,character,data.frame}(conn,
-  name, value, overwrite = FALSE, append = FALSE, ...)
+\S4method{dbWriteTable}{LoggingDBIConnection,ANY}(conn, name, value,
+  overwrite = FALSE, append = FALSE, ...)
 
 \S4method{dbReadTable}{LoggingDBIConnection,character}(conn, name, ...)
 

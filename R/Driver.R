@@ -4,6 +4,9 @@
 #' @name DBI
 NULL
 
+#' @include make-log-call.R
+global_log_call <- make_log_call(NULL)
+
 #' LoggingDBI driver
 #'
 #' TBD.
@@ -17,13 +20,13 @@ NULL
 #' }
 LoggingDBI <- function(drv) {
   quo <- enquo(drv)
-  log_drv <- log_call(!! quo)
-  new("LoggingDBIDriver", drv = log_drv)
+  global_log_call(!! quo)
 }
 
 #' @rdname DBI
 #' @export
-setClass("LoggingDBIDriver", contains = "DBIDriver", slots = list(drv = "DBIDriver"))
+setClass("LoggingDBIDriver", contains = "DBIDriver",
+         slots = list(drv = "DBIDriver", log_call = "function"))
 
 #' @rdname DBI
 #' @inheritParams methods::show
@@ -41,8 +44,7 @@ setMethod(
 setMethod(
   "dbConnect", "LoggingDBIDriver",
   function(drv, ...) {
-    conn <- log_call(dbConnect(drv@drv, !!! enquos(...)))
-    LoggingDBIConnection(conn)
+    drv@log_call(dbConnect(drv@drv, !!! enquos(...)))
   }
 )
 

@@ -56,8 +56,10 @@ Logging can be redirected to a file, optionally all outputs may be logged as wel
 ```{r}
 conn <- dbConnect(drv, file = ":memory:")
 dbWriteTable(conn, "iris", iris[1:3, ])
-dbGetQuery(conn, "SELECT * FROM iris")
+data <- dbGetQuery(conn, "SELECT * FROM iris")
 dbDisconnect(conn)
+
+data
 ```
 
 The log is runnable R code!
