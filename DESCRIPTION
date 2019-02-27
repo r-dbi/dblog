@@ -13,6 +13,7 @@ License: GPL-3
 URL: https://github.com/krlmlr/DBIlog,
     http://krlmlr.github.io/DBIlog
 BugReports: https://github.com/krlmlr/DBIlog/issues
+Imports: rlang
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -21,4 +22,5 @@ Collate:
     'Driver.R'
     'Connection.R'
     'Result.R'
+    'import.R'
     'log-call.R'
