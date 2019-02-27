@@ -4,23 +4,22 @@
 #' @name DBI
 NULL
 
-#' @include make-log-call.R
-global_log_call <- make_log_call(NULL)
-
 #' LoggingDBI driver
 #'
 #' TBD.
 #'
 #' @export
+#' @param drv Wrapped driver.
+#' @parem logger Logger object, defaults to [get_default_logger()].
 #' @import methods DBI
 #' @examples
 #' \dontrun{
 #' #' library(DBI)
 #' RLoggingDBI::LoggingDBI()
 #' }
-LoggingDBI <- function(drv) {
+LoggingDBI <- function(drv, logger = get_default_logger()) {
   quo <- enquo(drv)
-  global_log_call(!! quo)
+  logger(!! quo)
 }
 
 #' @rdname DBI

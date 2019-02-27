@@ -101,3 +101,20 @@ wrap <- function(x, name) {
     abort(paste0("Unknown class: ", paste(class(x), collapse = "/")))
   }
 }
+
+#' Create a logger object
+#'
+#' TBD.
+#'
+#' @export
+logger <- function() {
+  make_log_call(NULL)
+}
+
+default_logger <- logger()
+
+#' @export
+#' @rdname logger
+get_default_logger <- function() {
+  default_logger
+}
