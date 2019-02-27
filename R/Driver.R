@@ -54,7 +54,7 @@ setMethod(
 setMethod(
   "dbDataType", "LoggingDBIDriver",
   function(dbObj, obj, ...) {
-    log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
+    dbObj@log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -63,7 +63,7 @@ setMethod(
 setMethod(
   "dbIsValid", "LoggingDBIDriver",
   function(dbObj, ...) {
-    log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
+    dbObj@log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -72,5 +72,5 @@ setMethod(
 setMethod(
   "dbGetInfo", "LoggingDBIDriver",
   function(dbObj, ...) {
-    log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
+    dbObj@log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
   })

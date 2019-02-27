@@ -30,7 +30,7 @@ format.LoggingDBIConnection <- function(x, ...) {
 setMethod(
   "dbIsValid", "LoggingDBIConnection",
   function(dbObj, ...) {
-    log_call(dbIsValid(dbObj@conn, !!! enquos(...)))
+    dbObj@log_call(dbIsValid(dbObj@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -48,8 +48,7 @@ setMethod(
 setMethod(
   "dbSendQuery", c("LoggingDBIConnection", "character"),
   function(conn, statement, ...) {
-    res <- log_call(dbSendQuery(conn@conn, statement, !!! enquos(...)))
-    LoggingDBIResult(res)
+    conn@log_call(dbSendQuery(conn@conn, statement, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -67,8 +66,7 @@ setMethod(
 setMethod(
   "dbSendStatement", c("LoggingDBIConnection", "character"),
   function(conn, statement, ...) {
-    res <- log_call(dbSendStatement(conn@conn, statement, !!! enquos(...)))
-    LoggingDBIResult(res)
+    conn@log_call(dbSendStatement(conn@conn, statement, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -77,7 +75,7 @@ setMethod(
 setMethod(
   "dbDataType", "LoggingDBIConnection",
   function(dbObj, obj, ...) {
-    log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
+    conn@log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -86,7 +84,7 @@ setMethod(
 setMethod(
   "dbQuoteString", c("LoggingDBIConnection", "character"),
   function(conn, x, ...) {
-    log_call(dbQuoteString(conn@conn, x, !!! enquos(...)))
+    conn@log_call(dbQuoteString(conn@conn, x, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -95,7 +93,7 @@ setMethod(
 setMethod(
   "dbQuoteIdentifier", c("LoggingDBIConnection", "character"),
   function(conn, x, ...) {
-    log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
+    conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -103,7 +101,7 @@ setMethod(
 setMethod(
   "dbUnquoteIdentifier", c("LoggingDBIConnection", "SQL"),
   function(conn, x, ...) {
-    log_call(dbUnquoteIdentifier(conn@conn, x, !!! enquos(...)))
+    conn@log_call(dbUnquoteIdentifier(conn@conn, x, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -125,7 +123,7 @@ setMethod(
 setMethod(
   "dbReadTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
-    log_call(dbReadTable(conn@conn, name = name, !!! enquos(...)))
+    conn@log_call(dbReadTable(conn@conn, name = name, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -134,7 +132,7 @@ setMethod(
 setMethod(
   "dbListTables", "LoggingDBIConnection",
   function(conn, ...) {
-    log_call(dbListTables(conn@conn, !!! enquos(...)))
+    conn@log_call(dbListTables(conn@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -143,7 +141,7 @@ setMethod(
 setMethod(
   "dbExistsTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
-    log_call(dbExistsTable(conn@conn, name, !!! enquos(...)))
+    conn@log_call(dbExistsTable(conn@conn, name, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -152,7 +150,7 @@ setMethod(
 setMethod(
   "dbListFields", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
-    log_call(dbListFields(conn@conn, name, !!! enquos(...)))
+    conn@log_call(dbListFields(conn@conn, name, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -161,7 +159,7 @@ setMethod(
 setMethod(
   "dbRemoveTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
-    log_call(dbRemoveTable(conn@conn, name, !!! enquos(...)))
+    conn@log_call(dbRemoveTable(conn@conn, name, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -170,7 +168,7 @@ setMethod(
 setMethod(
   "dbGetInfo", "LoggingDBIConnection",
   function(dbObj, ...) {
-    log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
+    conn@log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -179,7 +177,7 @@ setMethod(
 setMethod(
   "dbBegin", "LoggingDBIConnection",
   function(conn, ...) {
-    log_call(dbBegin(conn@conn, !!! enquos(...)))
+    conn@log_call(dbBegin(conn@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -188,7 +186,7 @@ setMethod(
 setMethod(
   "dbCommit", "LoggingDBIConnection",
   function(conn, ...) {
-    log_call(dbCommit(conn@conn, !!! enquos(...)))
+    conn@log_call(dbCommit(conn@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -197,5 +195,5 @@ setMethod(
 setMethod(
   "dbRollback", "LoggingDBIConnection",
   function(conn, ...) {
-    log_call(dbRollback(conn@conn, !!! enquos(...)))
+    conn@log_call(dbRollback(conn@conn, !!! enquos(...)))
   })
