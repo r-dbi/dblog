@@ -4,7 +4,12 @@
 \alias{LoggingDBI}
 \title{LoggingDBI driver}
 \usage{
-LoggingDBI(drv)
+LoggingDBI(drv, logger = get_default_logger())
+}
+\arguments{
+\item{drv}{Driver to be wrapped.}
+
+\item{logger}{Logger object, defaults to \code{\link[=get_default_logger]{get_default_logger()}}.}
 }
 \description{
 TBD.

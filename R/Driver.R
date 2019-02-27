@@ -9,8 +9,8 @@ NULL
 #' TBD.
 #'
 #' @export
-#' @param drv Wrapped driver.
-#' @parem logger Logger object, defaults to [get_default_logger()].
+#' @param drv Driver to be wrapped.
+#' @param logger Logger object, defaults to [get_default_logger()].
 #' @import methods DBI
 #' @examples
 #' \dontrun{

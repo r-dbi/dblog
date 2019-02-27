@@ -21,9 +21,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Collate: 
-    'make-log-call.R'
     'Driver.R'
     'Connection.R'
     'Result.R'
     'import.R'
-    'log-call.R'
+    'make-log-call.R'

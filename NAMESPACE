@@ -2,6 +2,8 @@
 
 S3method(format,LoggingDBIConnection)
 export(LoggingDBI)
+export(get_default_logger)
+export(logger)
 exportClasses(LoggingDBIConnection)
 exportClasses(LoggingDBIDriver)
 exportClasses(LoggingDBIResult)
