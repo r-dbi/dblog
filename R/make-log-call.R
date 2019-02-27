@@ -66,7 +66,16 @@ make_log_call <- function(obj_name) {
     on.exit({
       cat(deparse(new_call, width.cutoff = 80), sep = "\n")
       if (isTRUE(result$visible)) {
-        print(result$value)
+        ev <- evaluate::evaluate(
+          result$value
+        )
+        cat(
+          paste0(
+            "## ",
+            strsplit(ev[[2]], "\n")[[1]]
+          ),
+          sep = "\n"
+        )
       }
     })
 
