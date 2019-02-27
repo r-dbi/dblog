@@ -8,6 +8,7 @@ NULL
 #'
 #' TBD.
 #'
+#' @export
 #' @import methods DBI
 #' @examples
 #' \dontrun{
@@ -21,10 +22,12 @@ LoggingDBI <- function(drv) {
 }
 
 #' @rdname DBI
+#' @export
 setClass("LoggingDBIDriver", contains = "DBIDriver", slots = list(drv = "DBIDriver"))
 
 #' @rdname DBI
 #' @inheritParams methods::show
+#' @export
 setMethod(
   "show", "LoggingDBIDriver",
   function(object) {
@@ -34,6 +37,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbConnect
+#' @export
 setMethod(
   "dbConnect", "LoggingDBIDriver",
   function(drv, ...) {
@@ -44,6 +48,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbDataType
+#' @export
 setMethod(
   "dbDataType", "LoggingDBIDriver",
   function(dbObj, obj, ...) {
@@ -52,6 +57,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbIsValid
+#' @export
 setMethod(
   "dbIsValid", "LoggingDBIDriver",
   function(dbObj, ...) {
@@ -60,6 +66,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbGetInfo
+#' @export
 setMethod(
   "dbGetInfo", "LoggingDBIDriver",
   function(dbObj, ...) {

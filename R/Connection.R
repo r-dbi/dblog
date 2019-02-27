@@ -6,6 +6,7 @@ LoggingDBIConnection <- function(conn) {
 }
 
 #' @rdname DBI
+#' @export
 setClass(
   "LoggingDBIConnection",
   contains = "DBIConnection",
@@ -14,6 +15,7 @@ setClass(
 
 #' @rdname DBI
 #' @inheritParams methods::show
+#' @export
 setMethod(
   "show", "LoggingDBIConnection",
   function(object) {
@@ -28,6 +30,7 @@ format.LoggingDBIConnection <- function(x, ...) {
 
 #' @rdname DBI
 #' @inheritParams DBI::dbIsValid
+#' @export
 setMethod(
   "dbIsValid", "LoggingDBIConnection",
   function(dbObj, ...) {
@@ -36,6 +39,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbDisconnect
+#' @export
 setMethod(
   "dbDisconnect", "LoggingDBIConnection",
   function(conn, ...) {
@@ -44,6 +48,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbSendQuery
+#' @export
 setMethod(
   "dbSendQuery", c("LoggingDBIConnection", "character"),
   function(conn, statement, ...) {
@@ -53,6 +58,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbSendStatement
+#' @export
 setMethod(
   "dbSendStatement", c("LoggingDBIConnection", "character"),
   function(conn, statement, ...) {
@@ -62,6 +68,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbDataType
+#' @export
 setMethod(
   "dbDataType", "LoggingDBIConnection",
   function(dbObj, obj, ...) {
@@ -70,6 +77,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbQuoteString
+#' @export
 setMethod(
   "dbQuoteString", c("LoggingDBIConnection", "character"),
   function(conn, x, ...) {
@@ -78,6 +86,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbQuoteIdentifier
+#' @export
 setMethod(
   "dbQuoteIdentifier", c("LoggingDBIConnection", "character"),
   function(conn, x, ...) {
@@ -98,6 +107,7 @@ setMethod(
 #'   `TRUE` if `append` is also `TRUE`.
 #' @param append Allow appending to the destination table. Cannot be
 #'   `TRUE` if `overwrite` is also `TRUE`.
+#' @export
 setMethod(
   "dbWriteTable", c("LoggingDBIConnection", "character", "data.frame"),
   function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
@@ -106,6 +116,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbReadTable
+#' @export
 setMethod(
   "dbReadTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
@@ -114,6 +125,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbListTables
+#' @export
 setMethod(
   "dbListTables", "LoggingDBIConnection",
   function(conn, ...) {
@@ -122,6 +134,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbExistsTable
+#' @export
 setMethod(
   "dbExistsTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
@@ -130,6 +143,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbListFields
+#' @export
 setMethod(
   "dbListFields", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
@@ -138,6 +152,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbRemoveTable
+#' @export
 setMethod(
   "dbRemoveTable", c("LoggingDBIConnection", "character"),
   function(conn, name, ...) {
@@ -146,6 +161,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbGetInfo
+#' @export
 setMethod(
   "dbGetInfo", "LoggingDBIConnection",
   function(dbObj, ...) {
@@ -154,6 +170,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbBegin
+#' @export
 setMethod(
   "dbBegin", "LoggingDBIConnection",
   function(conn, ...) {
@@ -162,6 +179,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbCommit
+#' @export
 setMethod(
   "dbCommit", "LoggingDBIConnection",
   function(conn, ...) {
@@ -170,6 +188,7 @@ setMethod(
 
 #' @rdname DBI
 #' @inheritParams DBI::dbRollback
+#' @export
 setMethod(
   "dbRollback", "LoggingDBIConnection",
   function(conn, ...) {
