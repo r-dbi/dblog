@@ -1,16 +1,12 @@
 #' @include Connection.R
 NULL
 
-LoggingDBIResult <- function(res) {
-  new("LoggingDBIResult", res = res)
-}
-
 #' @rdname DBI
 #' @export
 setClass(
   "LoggingDBIResult",
   contains = "DBIResult",
-  slots = list(res = "DBIResult")
+  slots = list(res = "DBIResult", log_call = "function")
 )
 
 #' @rdname DBI
