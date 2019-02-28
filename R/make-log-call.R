@@ -113,23 +113,18 @@ get_default_logger <- function() {
   default_logger
 }
 
-format_console <- function(call, result, path, width = 80) {
+format_console <- function(call, result, width = 80) {
   withr::local_options(list(width = width))
 
   call_fmt <- deparse(call, width.cutoff = width)
   if (isTRUE(result$visible)) {
-    ev <- evaluate::evaluate(
-      result$value
-    )
-    result_fmt <- paste0(
-      "## ",
-      strsplit(ev[[2]], "\n")[[1]]
-    )
+    output <- capture.output(print(result$value))
+    result_fmt <- paste0("## ", output)
   } else {
     result_fmt <- NULL
   }
 
-  paste(c(call_fmt, result_fmt), collapse = "\n", file = path)
+  paste(c(call_fmt, result_fmt), collapse = "\n")
 }
 
 #' @export
@@ -142,7 +137,7 @@ make_text_logger <- function(path = NULL) {
 
   make_logger(
     log = function(call, result) {
-      cat(format_console(call, result, path))
+      cat(format_console(call, result), file = path)
     }
   )
 }
