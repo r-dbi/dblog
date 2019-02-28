@@ -8,9 +8,12 @@
 \usage{
 get_default_logger()
 
-make_console_logger()
+make_console_logger(path = NULL)
 
 make_collect_logger()
+}
+\arguments{
+\item{path}{Passed on to \code{\link[=cat]{cat()}} for the output.  Default: console output.}
 }
 \description{
 TBD.

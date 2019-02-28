@@ -113,8 +113,10 @@ get_default_logger <- function() {
   default_logger
 }
 
-format_console <- function(call, result) {
-  call_fmt <- deparse(call, width.cutoff = 80)
+format_console <- function(call, result, path, width = 80) {
+  withr::local_options(list(width = width))
+
+  call_fmt <- deparse(call, width.cutoff = width)
   if (isTRUE(result$visible)) {
     ev <- evaluate::evaluate(
       result$value
@@ -127,15 +129,20 @@ format_console <- function(call, result) {
     result_fmt <- NULL
   }
 
-  paste(c(call_fmt, result_fmt), collapse = "\n")
+  paste(c(call_fmt, result_fmt), collapse = "\n", file = path)
 }
 
 #' @export
+#' @param path Passed on to [cat()] for the output.  Default: console output.
 #' @rdname get_default_logger
-make_console_logger <- function() {
+make_console_logger <- function(path = NULL) {
+  if (is.null(path)) {
+    path <- ""
+  }
+
   make_logger(
     log = function(call, result) {
-      cat(format_console(call, result))
+      cat(format_console(call, result, path))
     }
   )
 }
