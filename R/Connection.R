@@ -75,7 +75,7 @@ setMethod(
 setMethod(
   "dbDataType", "LoggingDBIConnection",
   function(dbObj, obj, ...) {
-    conn@log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
+    dbObj@log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
   })
 
 #' @rdname DBI
@@ -168,7 +168,7 @@ setMethod(
 setMethod(
   "dbGetInfo", "LoggingDBIConnection",
   function(dbObj, ...) {
-    conn@log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
+    dbObj@log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
   })
 
 #' @rdname DBI

@@ -15,6 +15,11 @@ URL: https://github.com/krlmlr/DBIlog,
 BugReports: https://github.com/krlmlr/DBIlog/issues
 Imports: 
     collections (>= 0.1.4),
+    DBI,
+    evaluate,
+    glue,
+    methods,
+    purrr,
     rlang
 Encoding: UTF-8
 LazyData: true
