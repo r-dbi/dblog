@@ -40,7 +40,6 @@ The `LoggingDBI` driver wraps arbitrary drivers:
 ``` r
 library(DBIlog)
 drv <- LoggingDBI(RSQLite::SQLite())
-#> drv1 <- RSQLite::SQLite()
 ```
 
 All calls to DBI methods are logged, by default to the console. Logging
@@ -49,21 +48,9 @@ well.
 
 ``` r
 conn <- dbConnect(drv, file = ":memory:")
-#> conn1 <- dbConnect(drv1, file = ":memory:")
 dbWriteTable(conn, "iris", iris[1:3, ])
-#> dbWriteTable(conn1, name = "iris", value = structure(list(Sepal.Length = c(5.1, 4.9, 
-#> 4.7), Sepal.Width = c(3.5, 3, 3.2), Petal.Length = c(1.4, 1.4, 1.3), Petal.Width = c(0.2, 
-#> 0.2, 0.2), Species = structure(c(1L, 1L, 1L), .Label = c("setosa", "versicolor", 
-#> "virginica"), class = "factor")), row.names = c(NA, 3L), class = "data.frame"), overwrite = FALSE, 
-#>     append = FALSE)
 data <- dbGetQuery(conn, "SELECT * FROM iris")
-#> dbGetQuery(conn1, "SELECT * FROM iris")
-#> ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-#> ## 1          5.1         3.5          1.4         0.2  setosa
-#> ## 2          4.9         3.0          1.4         0.2  setosa
-#> ## 3          4.7         3.2          1.3         0.2  setosa
 dbDisconnect(conn)
-#> dbDisconnect(conn1)
 
 data
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -78,8 +65,7 @@ example, use a collecting logger to output all calls and results after
 the fact.
 
 ``` r
-log_obj <- make_collect_log_obj()
-collecting_logger <- logger(log_obj)
+collecting_logger <- make_collect_logger()
 
 drv <- LoggingDBI(RSQLite::SQLite(), logger = collecting_logger)
 conn <- dbConnect(drv, file = ":memory:")
@@ -87,7 +73,7 @@ dbWriteTable(conn, "iris", iris[1:3, ])
 data <- dbGetQuery(conn, "SELECT * FROM iris")
 dbDisconnect(conn)
 
-log_obj$retrieve()
+collecting_logger$retrieve()
 #> drv1 <- RSQLite::SQLite()
 #> conn1 <- dbConnect(drv1, file = ":memory:")
 #> dbWriteTable(conn1, name = "iris", value = structure(list(Sepal.Length = c(5.1, 4.9, 
@@ -102,7 +88,7 @@ log_obj$retrieve()
 #> ## 3          4.7         3.2          1.3         0.2  setosa
 #> dbDisconnect(conn1)
 
-ev <- evaluate::evaluate(log_obj$retrieve())
+ev <- evaluate::evaluate(collecting_logger$retrieve())
 cat(unlist(ev, use.names = FALSE), sep = "\n")
 #> drv1 <- RSQLite::SQLite()
 #> 

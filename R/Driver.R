@@ -19,7 +19,7 @@ NULL
 #' }
 LoggingDBI <- function(drv, logger = get_default_logger()) {
   quo <- enquo(drv)
-  logger(!! quo)
+  logger$log_call(!! quo)
 }
 
 #' @rdname DBI

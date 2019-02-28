@@ -97,22 +97,18 @@ wrap <- function(x, name, log_obj) {
   }
 }
 
-#' Create a logger object
+make_logger <- function(...) {
+  logger <- list2(...)
+
+  logger$log_call <- make_log_call(NULL, logger)
+  logger
+}
+
+#' Logging parameters
 #'
 #' TBD.
 #'
-#' @param log_obj
-#'
 #' @export
-logger <- function(log_obj = NULL) {
-  if (is.null(log_obj)) {
-    log_obj <- make_console_log_obj()
-  }
-  make_log_call(NULL, log_obj)
-}
-
-#' @export
-#' @rdname logger
 get_default_logger <- function() {
   default_logger
 }
@@ -135,9 +131,9 @@ format_console <- function(call, result) {
 }
 
 #' @export
-#' @rdname logger
-make_console_log_obj <- function() {
-  list(
+#' @rdname get_default_logger
+make_console_logger <- function() {
+  make_logger(
     log = function(call, result) {
       cat(format_console(call, result))
     }
@@ -145,11 +141,11 @@ make_console_log_obj <- function() {
 }
 
 #' @export
-#' @rdname logger
-make_collect_log_obj <- function() {
+#' @rdname get_default_logger
+make_collect_logger <- function() {
   queue <- collections::Queue$new()
 
-  list(
+  make_logger(
     log = function(call, result) {
       queue$push(format_console(call, result))
     },
@@ -160,4 +156,4 @@ make_collect_log_obj <- function() {
   )
 }
 
-default_logger <- logger()
+default_logger <- make_collect_logger()
