@@ -40,6 +40,7 @@ The `LoggingDBI` driver wraps arbitrary drivers:
 ``` r
 library(DBIlog)
 drv <- LoggingDBI(RSQLite::SQLite())
+#> drv1 <- RSQLite::SQLite()
 ```
 
 All calls to DBI methods are logged, by default to the console. Logging
@@ -48,9 +49,21 @@ well.
 
 ``` r
 conn <- dbConnect(drv, file = ":memory:")
+#> conn1 <- dbConnect(drv1, file = ":memory:")
 dbWriteTable(conn, "iris", iris[1:3, ])
+#> dbWriteTable(conn1, name = "iris", value = structure(list(Sepal.Length = c(5.1, 4.9, 
+#> 4.7), Sepal.Width = c(3.5, 3, 3.2), Petal.Length = c(1.4, 1.4, 1.3), Petal.Width = c(0.2, 
+#> 0.2, 0.2), Species = structure(c(1L, 1L, 1L), .Label = c("setosa", "versicolor", 
+#> "virginica"), class = "factor")), row.names = c(NA, 3L), class = "data.frame"), overwrite = FALSE, 
+#>     append = FALSE)
 data <- dbGetQuery(conn, "SELECT * FROM iris")
+#> dbGetQuery(conn1, "SELECT * FROM iris")
+#> ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> ## 1          5.1         3.5          1.4         0.2  setosa
+#> ## 2          4.9         3.0          1.4         0.2  setosa
+#> ## 3          4.7         3.2          1.3         0.2  setosa
 dbDisconnect(conn)
+#> dbDisconnect(conn1)
 
 data
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species

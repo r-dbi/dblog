@@ -50,6 +50,7 @@ library(DBIlog)
 drv <- LoggingDBI(RSQLite::SQLite())
 ```
 
+
 All calls to DBI methods are logged, by default to the console.
 Logging can be redirected to a file, optionally all outputs may be logged as well.
 

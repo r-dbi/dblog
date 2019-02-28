@@ -156,4 +156,4 @@ make_collect_logger <- function() {
   )
 }
 
-default_logger <- make_collect_logger()
+default_logger <- make_console_logger()
