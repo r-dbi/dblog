@@ -1,3 +1,8 @@
+# DBIlog 0.0.0.9004
+
+- Same as previous version.
+
+
 # DBIlog 0.0.0.9003
 
 - Support logging of calls to DBIResult.
