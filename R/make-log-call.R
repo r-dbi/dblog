@@ -135,7 +135,7 @@ format_console <- function(call, result, path, width = 80) {
 #' @export
 #' @param path Passed on to [cat()] for the output.  Default: console output.
 #' @rdname get_default_logger
-make_console_logger <- function(path = NULL) {
+make_text_logger <- function(path = NULL) {
   if (is.null(path)) {
     path <- ""
   }
@@ -163,4 +163,4 @@ make_collect_logger <- function() {
   )
 }
 
-default_logger <- make_console_logger()
+default_logger <- make_text_logger()

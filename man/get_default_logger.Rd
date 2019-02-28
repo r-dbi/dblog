@@ -2,13 +2,13 @@
 % Please edit documentation in R/make-log-call.R
 \name{get_default_logger}
 \alias{get_default_logger}
-\alias{make_console_logger}
+\alias{make_text_logger}
 \alias{make_collect_logger}
 \title{Logging parameters}
 \usage{
 get_default_logger()
 
-make_console_logger(path = NULL)
+make_text_logger(path = NULL)
 
 make_collect_logger()
 }
