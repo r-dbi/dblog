@@ -137,7 +137,7 @@ make_text_logger <- function(path = NULL) {
 
   make_logger(
     log = function(call, result) {
-      cat(format_console(call, result), file = path)
+      cat(format_console(call, result), file = path, append = TRUE)
     }
   )
 }
