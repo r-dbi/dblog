@@ -1,3 +1,11 @@
+# DBIlog 0.0.0.9003
+
+- Support logging of calls to DBIResult.
+- Remove dependency on evaluate package.
+- New `make_text_logger()`, renamed from `make_console_logger()`.
+- `make_console_logger()` gains `path` argument, is useful again.
+
+
 # DBIlog 0.0.0.9001
 
 Initial prototype. Exported functions:
