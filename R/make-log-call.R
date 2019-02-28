@@ -117,6 +117,10 @@ get_default_logger <- function() {
 format_console <- function(call, result, width = 80) {
   withr::local_options(list(width = width))
 
+  if (is.null(result)) {
+    call <- call("try", call)
+  }
+
   # backtick = FALSE gives better results in some edge cases, like
   # list("``" = 1)
   call_fmt <- deparse(call, width.cutoff = width, backtick = FALSE)
