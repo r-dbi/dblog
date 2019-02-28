@@ -1,3 +1,10 @@
+# DBIlog 0.0.0.9005
+
+- Fix logging output to file, add line break.
+- Switch to `deparse(backtick = FALSE)` to create parseable code.
+- Fix error when wrapped DBI method fails.
+
+
 # DBIlog 0.0.0.9004
 
 - Same as previous version.
