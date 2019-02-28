@@ -63,6 +63,7 @@ make_log_call <- function(obj_name, log_obj) {
 
     args <- purrr::map(args, find_s4_dict)
     new_call <- call2(expr[[1]], !!!args)
+    result <- NULL
     on.exit(log_obj$log(new_call, result))
 
     visible_quo <- rlang::new_quosure(call2(withVisible, expr), env)
