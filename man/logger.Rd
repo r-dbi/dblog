@@ -3,11 +3,20 @@
 \name{logger}
 \alias{logger}
 \alias{get_default_logger}
+\alias{make_console_log_obj}
+\alias{make_collect_log_obj}
 \title{Create a logger object}
 \usage{
-logger()
+logger(log_obj = NULL)
 
 get_default_logger()
+
+make_console_log_obj()
+
+make_collect_log_obj()
+}
+\arguments{
+\item{log_obj}{}
 }
 \description{
 TBD.

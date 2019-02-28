@@ -1,5 +1,6 @@
-make_log_call <- function(obj_name) {
+make_log_call <- function(obj_name, log_obj) {
   force(obj_name)
+  force(log_obj)
 
   s4_dict <- collections::Stack$new()
 
@@ -62,22 +63,7 @@ make_log_call <- function(obj_name) {
 
     args <- purrr::map(args, find_s4_dict)
     new_call <- call2(expr[[1]], !!!args)
-    #on.exit(print(styler::style_text(deparse(new_call, width.cutoff = 80))))
-    on.exit({
-      cat(deparse(new_call, width.cutoff = 80), sep = "\n")
-      if (isTRUE(result$visible)) {
-        ev <- evaluate::evaluate(
-          result$value
-        )
-        cat(
-          paste0(
-            "## ",
-            strsplit(ev[[2]], "\n")[[1]]
-          ),
-          sep = "\n"
-        )
-      }
-    })
+    on.exit(log_obj$log(new_call, result))
 
     visible_quo <- rlang::new_quosure(call2(withVisible, expr), env)
     result <- eval_tidy(visible_quo)
@@ -85,7 +71,7 @@ make_log_call <- function(obj_name) {
     new_obj <- add_s4_dict(result$value)
     if (!is.null(new_obj)) {
       new_call <- call2("<-", new_obj, new_call)
-      result$value <- wrap(result$value, new_obj)
+      result$value <- wrap(result$value, new_obj, log_obj)
       result$visible <- FALSE
     }
 
@@ -99,13 +85,13 @@ make_log_call <- function(obj_name) {
   log_call
 }
 
-wrap <- function(x, name) {
+wrap <- function(x, name, log_obj) {
   if (inherits(x, "DBIDriver")) {
-    new("LoggingDBIDriver", drv = x, log_call = make_log_call(name))
+    new("LoggingDBIDriver", drv = x, log_call = make_log_call(name, log_obj))
   } else if (inherits(x, "DBIConnection")) {
-    new("LoggingDBIConnection", conn = x, log_call = make_log_call(name))
+    new("LoggingDBIConnection", conn = x, log_call = make_log_call(name, log_obj))
   } else if (inherits(x, "DBIResult")) {
-    new("LoggingDBIResult", res = x, log_call = make_log_call(name))
+    new("LoggingDBIResult", res = x, log_call = make_log_call(name, log_obj))
   } else {
     abort(paste0("Unknown class: ", paste(class(x), collapse = "/")))
   }
@@ -115,15 +101,63 @@ wrap <- function(x, name) {
 #'
 #' TBD.
 #'
+#' @param log_obj
+#'
 #' @export
-logger <- function() {
-  make_log_call(NULL)
+logger <- function(log_obj = NULL) {
+  if (is.null(log_obj)) {
+    log_obj <- make_console_log_obj()
+  }
+  make_log_call(NULL, log_obj)
 }
-
-default_logger <- logger()
 
 #' @export
 #' @rdname logger
 get_default_logger <- function() {
   default_logger
 }
+
+format_console <- function(call, result) {
+  call_fmt <- deparse(call, width.cutoff = 80)
+  if (isTRUE(result$visible)) {
+    ev <- evaluate::evaluate(
+      result$value
+    )
+    result_fmt <- paste0(
+      "## ",
+      strsplit(ev[[2]], "\n")[[1]]
+    )
+  } else {
+    result_fmt <- NULL
+  }
+
+  paste(c(call_fmt, result_fmt), collapse = "\n")
+}
+
+#' @export
+#' @rdname logger
+make_console_log_obj <- function() {
+  list(
+    log = function(call, result) {
+      cat(format_console(call, result))
+    }
+  )
+}
+
+#' @export
+#' @rdname logger
+make_collect_log_obj <- function() {
+  queue <- collections::Queue$new()
+
+  list(
+    log = function(call, result) {
+      queue$push(format_console(call, result))
+    },
+
+    retrieve = function() {
+      glue::glue_collapse(as.character(queue$as_list()), sep = "\n")
+    }
+  )
+}
+
+default_logger <- logger()

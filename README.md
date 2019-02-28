@@ -73,7 +73,64 @@ data
 ```
 
 The log is runnable R code\! Run it in a fresh session to repeat the
-operations, step by step or in an otherwise controlled fashion.
+operations, step by step or in an otherwise controlled fashion. For
+example, use a collecting logger to output all calls and results after
+the fact.
+
+``` r
+log_obj <- make_collect_log_obj()
+collecting_logger <- logger(log_obj)
+
+drv <- LoggingDBI(RSQLite::SQLite(), logger = collecting_logger)
+conn <- dbConnect(drv, file = ":memory:")
+dbWriteTable(conn, "iris", iris[1:3, ])
+data <- dbGetQuery(conn, "SELECT * FROM iris")
+dbDisconnect(conn)
+
+log_obj$retrieve()
+#> drv1 <- RSQLite::SQLite()
+#> conn1 <- dbConnect(drv1, file = ":memory:")
+#> dbWriteTable(conn1, name = "iris", value = structure(list(Sepal.Length = c(5.1, 4.9, 
+#> 4.7), Sepal.Width = c(3.5, 3, 3.2), Petal.Length = c(1.4, 1.4, 1.3), Petal.Width = c(0.2, 
+#> 0.2, 0.2), Species = structure(c(1L, 1L, 1L), .Label = c("setosa", "versicolor", 
+#> "virginica"), class = "factor")), row.names = c(NA, 3L), class = "data.frame"), overwrite = FALSE, 
+#>     append = FALSE)
+#> dbGetQuery(conn1, "SELECT * FROM iris")
+#> ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> ## 1          5.1         3.5          1.4         0.2  setosa
+#> ## 2          4.9         3.0          1.4         0.2  setosa
+#> ## 3          4.7         3.2          1.3         0.2  setosa
+#> dbDisconnect(conn1)
+
+ev <- evaluate::evaluate(log_obj$retrieve())
+cat(unlist(ev, use.names = FALSE), sep = "\n")
+#> drv1 <- RSQLite::SQLite()
+#> 
+#> conn1 <- dbConnect(drv1, file = ":memory:")
+#> 
+#> dbWriteTable(conn1, name = "iris", value = structure(list(Sepal.Length = c(5.1, 4.9, 
+#> 4.7), Sepal.Width = c(3.5, 3, 3.2), Petal.Length = c(1.4, 1.4, 1.3), Petal.Width = c(0.2, 
+#> 0.2, 0.2), Species = structure(c(1L, 1L, 1L), .Label = c("setosa", "versicolor", 
+#> "virginica"), class = "factor")), row.names = c(NA, 3L), class = "data.frame"), overwrite = FALSE, 
+#>     append = FALSE)
+#> 
+#> dbGetQuery(conn1, "SELECT * FROM iris")
+#> 
+#>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> 1          5.1         3.5          1.4         0.2  setosa
+#> 2          4.9         3.0          1.4         0.2  setosa
+#> 3          4.7         3.2          1.3         0.2  setosa
+#> 
+#> ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> 
+#> ## 1          5.1         3.5          1.4         0.2  setosa
+#> 
+#> ## 2          4.9         3.0          1.4         0.2  setosa
+#> 
+#> ## 3          4.7         3.2          1.3         0.2  setosa
+#> 
+#> dbDisconnect(conn1)
+```
 
 DBIlog is smart about DBI objects created or returned, and will assign a
 new variable name to each new object. Cleared results or closed
@@ -86,9 +143,7 @@ dbBegin(drv)
 #> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'dbBegin' for signature '"LoggingDBIDriver"'
 
 conn <- dbConnect(drv, file = ":memory:")
-#> conn2 <- dbConnect(drv1, file = ":memory:")
 dbDisconnect(conn)
-#> dbDisconnect(conn2)
 
 dbCommit(drv)
 #> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'dbCommit' for signature '"LoggingDBIDriver"'
@@ -97,9 +152,7 @@ dbBegin(drv)
 #> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'dbBegin' for signature '"LoggingDBIDriver"'
 
 conn <- dbConnect(drv, file = ":memory:")
-#> conn3 <- dbConnect(drv1, file = ":memory:")
 dbDisconnect(conn)
-#> dbDisconnect(conn3)
 
 dbCommit(drv)
 #> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'dbCommit' for signature '"LoggingDBIDriver"'
