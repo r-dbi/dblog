@@ -106,3 +106,11 @@ iris_tbl %>%
   summarize_if(is.numeric, mean)
 ```
 
+The current implementation has limitations, because the connection objects don't inherit the underlying classes yet:
+
+```{r dplyr-explain}
+iris_tbl %>%
+  summarize_if(is.numeric, mean) %>% 
+  explain()
+```
+
