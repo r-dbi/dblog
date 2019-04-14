@@ -166,37 +166,6 @@ dbWriteTable(conn, "iris", iris[1:3, ])
 
 src <- dbplyr::src_dbi(conn)
 iris_tbl <- tbl(src, "iris")
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(c(zzz1 = "iris"), class = c("ident", "character"
-#> )))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "zzz1")
-#> ## <SQL> `zzz1`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res1 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris` AS `zzz1`\nWHERE (0 = 1)", class = c("sql", 
 #> "character")))
 #> dbFetch(res1, n = 0)
@@ -206,32 +175,6 @@ iris_tbl <- tbl(src, "iris")
 iris_tbl %>%
   summarize_if(is.numeric, mean)
 #> Applying predicate on the first 100 rows
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res2 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", 
 #> "character")))
 #> dbFetch(res2, n = 100)
@@ -242,104 +185,9 @@ iris_tbl %>%
 #> dbHasCompleted(res2)
 #> ## [1] TRUE
 #> dbClearResult(res2)
-#> dbQuoteIdentifier(conn1, structure("Sepal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Sepal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
 #> Warning: Missing values are always removed in SQL.
 #> Use `mean(x, na.rm = TRUE)` to silence this warning
 #> This warning is displayed only once per session.
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Sepal.Width", class = c("ident", "character")))
-#> ## <SQL> `Sepal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Petal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Width", class = c("ident", "character")))
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(character(0), class = c("ident", "character")))
-#> ## <SQL> 
-#> dbQuoteIdentifier(conn1, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"
-#> ))
-#> ## <SQL> `Sepal.Length`
-#> ## <SQL> `Sepal.Width`
-#> ## <SQL> `Petal.Length`
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, c("", "", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res3 <- dbSendQuery(conn1, structure("SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`\nFROM `iris`\nLIMIT 11", class = c("sql", 
 #> "character")))
 #> dbFetch(res3, n = -1)
@@ -349,7 +197,7 @@ iris_tbl %>%
 #> ## [1] TRUE
 #> dbClearResult(res3)
 #> # Source:   lazy query [?? x 4]
-#> # Database: LoggingDBIConnection
+#> # Database: sqlite 3.25.3 []
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>          <dbl>       <dbl>        <dbl>       <dbl>
 #> 1         4.90        3.23         1.37         0.2
@@ -363,32 +211,6 @@ iris_tbl %>%
   summarize_if(is.numeric, mean) %>% 
   explain()
 #> Applying predicate on the first 100 rows
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res4 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", 
 #> "character")))
 #> dbFetch(res4, n = 100)
@@ -400,220 +222,14 @@ iris_tbl %>%
 #> ## [1] TRUE
 #> dbClearResult(res4)
 #> <SQL>
-#> dbQuoteIdentifier(conn1, structure("Sepal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Sepal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Sepal.Width", class = c("ident", "character")))
-#> ## <SQL> `Sepal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Petal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Width", class = c("ident", "character")))
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(character(0), class = c("ident", "character")))
-#> ## <SQL> 
-#> dbQuoteIdentifier(conn1, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"
-#> ))
-#> ## <SQL> `Sepal.Length`
-#> ## <SQL> `Sepal.Width`
-#> ## <SQL> `Petal.Length`
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, c("", "", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`
 #> FROM `iris`
 #> 
 #> <PLAN>
-#> dbQuoteIdentifier(conn1, structure("Sepal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Sepal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Sepal.Width", class = c("ident", "character")))
-#> ## <SQL> `Sepal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Petal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Width", class = c("ident", "character")))
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(character(0), class = c("ident", "character")))
-#> ## <SQL> 
-#> dbQuoteIdentifier(conn1, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"
-#> ))
-#> ## <SQL> `Sepal.Length`
-#> ## <SQL> `Sepal.Width`
-#> ## <SQL> `Petal.Length`
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, c("", "", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbGetQuery(conn1, structure("EXPLAIN SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`\nFROM `iris`", class = c("sql", 
+#> dbGetQuery(conn1, structure("EXPLAIN QUERY PLAN SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`\nFROM `iris`", class = c("sql", 
 #> "character")))
-#> ##    addr       opcode p1 p2 p3     p4 p5 comment
-#> ## 1     0         Init  0 24  0        00      NA
-#> ## 2     1         Null  0  1  8        00      NA
-#> ## 3     2     OpenRead  0  2  0      4 00      NA
-#> ## 4     3       Rewind  0 17  0        00      NA
-#> ## 5     4       Column  0  0  9        00      NA
-#> ## 6     5 RealAffinity  9  0  0        00      NA
-#> ## 7     6      AggStep  0  9  1 avg(1) 01      NA
-#> ## 8     7       Column  0  1  9        00      NA
-#> ## 9     8 RealAffinity  9  0  0        00      NA
-#> ## 10    9      AggStep  0  9  2 avg(1) 01      NA
-#> ## 11   10       Column  0  2  9        00      NA
-#> ## 12   11 RealAffinity  9  0  0        00      NA
-#> ##  [ reached 'max' / getOption("max.print") -- omitted 14 rows ]
-#>    addr       opcode p1 p2 p3     p4 p5 comment
-#> 1     0         Init  0 24  0        00      NA
-#> 2     1         Null  0  1  8        00      NA
-#> 3     2     OpenRead  0  2  0      4 00      NA
-#> 4     3       Rewind  0 17  0        00      NA
-#> 5     4       Column  0  0  9        00      NA
-#> 6     5 RealAffinity  9  0  0        00      NA
-#> 7     6      AggStep  0  9  1 avg(1) 01      NA
-#> 8     7       Column  0  1  9        00      NA
-#> 9     8 RealAffinity  9  0  0        00      NA
-#> 10    9      AggStep  0  9  2 avg(1) 01      NA
-#> 11   10       Column  0  2  9        00      NA
-#> 12   11 RealAffinity  9  0  0        00      NA
-#>  [ reached 'max' / getOption("max.print") -- omitted 14 rows ]
+#> ##   id parent notused          detail
+#> ## 1  3      0       0 SCAN TABLE iris
+#>   id parent notused          detail
+#> 1  3      0       0 SCAN TABLE iris
 ```
