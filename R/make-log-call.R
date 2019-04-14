@@ -94,7 +94,8 @@ wrap <- function(x, name, log_obj) {
     class_name <- make_connection_class(class(x)[[1]])
     new(class_name, conn = x, log_call = make_log_call(name, log_obj))
   } else if (inherits(x, "DBIResult")) {
-    new("LoggingDBIResult", res = x, log_call = make_log_call(name, log_obj))
+    class_name <- make_result_class(class(x)[[1]])
+    new(class_name, res = x, log_call = make_log_call(name, log_obj))
   } else {
     abort(paste0("Unknown class: ", paste(class(x), collapse = "/")))
   }
