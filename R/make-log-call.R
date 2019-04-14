@@ -56,7 +56,7 @@ make_log_call <- function(obj_name, log_obj) {
     expr <- quo_get_expr(quo)
     env <- quo_get_env(quo)
 
-    args <- purrr::map(expr[-1], ~ eval_tidy(., env))
+    args <- purrr::map(as.list(expr[-1]), ~ eval_tidy(., env))
     if (!is.null(obj_name)) {
       args[[1]] <- obj_name
     }
