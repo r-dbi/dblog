@@ -22,37 +22,52 @@ LoggingDBI <- function(drv, logger = get_default_logger()) {
   logger$log_call(!! quo)
 }
 
-setClass("LoggingDBIDriver", contains = "DBIDriver",
-         slots = list(drv = "DBIDriver", log_call = "function"))
+setClass("LoggingDBIDriver")
 
-setMethod(
-  "show", "LoggingDBIDriver",
-  function(object) {
-    cat("<LoggingDBIDriver>\n")
-    show(object@drv)
-  })
+make_driver_class <- function(base_class) {
 
-setMethod(
-  "dbConnect", "LoggingDBIDriver",
-  function(drv, ...) {
-    drv@log_call(dbConnect(drv@drv, !!! enquos(...)))
+  template_name <- "LoggingDBIDriver"
+  class_name <- paste0(template_name, "-", base_class)
+  all_base_classes <- c(template_name, base_class)
+
+  if (isClass(class_name)) {
+    return(class_name)
   }
-)
 
-setMethod(
-  "dbDataType", "LoggingDBIDriver",
-  function(dbObj, obj, ...) {
-    dbObj@log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
-  })
+  class <- setClass(class_name,
+    contains = all_base_classes, slots = list(drv = base_class, log_call = "function"))
 
-setMethod(
-  "dbIsValid", "LoggingDBIDriver",
-  function(dbObj, ...) {
-    dbObj@log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
-  })
+  setMethod(
+    "show", class_name,
+    function(object) {
+      cat("<LoggingDBIDriver>\n")
+      show(object@drv)
+    })
 
-setMethod(
-  "dbGetInfo", "LoggingDBIDriver",
-  function(dbObj, ...) {
-    dbObj@log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
-  })
+  setMethod(
+    "dbConnect", class_name,
+    function(drv, ...) {
+      drv@log_call(dbConnect(drv@drv, !!! enquos(...)))
+    }
+  )
+
+  setMethod(
+    "dbDataType", class_name,
+    function(dbObj, obj, ...) {
+      dbObj@log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbIsValid", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetInfo", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
+    })
+
+  class_name
+}

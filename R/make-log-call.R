@@ -88,7 +88,8 @@ make_log_call <- function(obj_name, log_obj) {
 
 wrap <- function(x, name, log_obj) {
   if (inherits(x, "DBIDriver")) {
-    new("LoggingDBIDriver", drv = x, log_call = make_log_call(name, log_obj))
+    class <- make_driver_class(class(x)[[1]])
+    new(class, drv = x, log_call = make_log_call(name, log_obj))
   } else if (inherits(x, "DBIConnection")) {
     new("LoggingDBIConnection", conn = x, log_call = make_log_call(name, log_obj))
   } else if (inherits(x, "DBIResult")) {
