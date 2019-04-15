@@ -18,6 +18,16 @@ make_connection_class <- function(base_class) {
     return(class_name)
   }
 
+  where <- parent.frame()
+
+  setClass <- function(...) {
+    methods::setClass(..., where = where, package = .packageName)
+  }
+
+  setMethod <- function(...) {
+    methods::setMethod(..., where = where)
+  }
+
   class <- setClass(class_name,
     contains = all_base_classes, slots = list(conn = base_class, log_call = "function"))
 
