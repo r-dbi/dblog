@@ -83,28 +83,24 @@ make_connection_class <- function(base_class) {
   setMethod(
     "dbQuoteIdentifier", class_name,
     function(conn, x, ...) {
-      barf
       conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
     })
 
   setMethod(
     "dbQuoteIdentifier", c(class_name, "character"),
     function(conn, x, ...) {
-      barf
       conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
     })
 
   setMethod(
     "dbQuoteIdentifier", c(class_name, "SQL"),
     function(conn, x, ...) {
-      barf
       conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
     })
 
   setMethod(
     "dbQuoteIdentifier", c(class_name, "Id"),
     function(conn, x, ...) {
-      barf
       conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
     })
 
