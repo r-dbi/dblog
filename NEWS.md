@@ -1,22 +1,22 @@
-# DBIlog 0.0.0.9006
+# dblog 0.0.0.9006
 
 - Dynamic instantiation of S4 classes.
 - Failed calls are wrapped with `try()`.
 
 
-# DBIlog 0.0.0.9005
+# dblog 0.0.0.9005
 
 - Fix logging output to file, add line break.
 - Switch to `deparse(backtick = FALSE)` to create parseable code.
 - Fix error when wrapped DBI method fails.
 
 
-# DBIlog 0.0.0.9004
+# dblog 0.0.0.9004
 
 - Same as previous version.
 
 
-# DBIlog 0.0.0.9003
+# dblog 0.0.0.9003
 
 - Support logging of calls to DBIResult.
 - Remove dependency on evaluate package.
@@ -24,7 +24,7 @@
 - `make_console_logger()` gains `path` argument, is useful again.
 
 
-# DBIlog 0.0.0.9001
+# dblog 0.0.0.9001
 
 Initial prototype. Exported functions:
 

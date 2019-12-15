@@ -1,4 +1,4 @@
-Package: DBIlog
+Package: dblog
 Title: Logging for DBI
 Version: 0.0.0.9006
 Date: 2019-12-15
@@ -10,9 +10,8 @@ Authors@R:
            comment = c(ORCID = "0000-0002-1416-3412"))
 Description: Provides logging of DBI methods for arbitrary backends.
 License: GPL-3
-URL: https://github.com/krlmlr/DBIlog,
-    http://krlmlr.github.io/DBIlog
-BugReports: https://github.com/krlmlr/DBIlog/issues
+URL: https://dblog.r-dbi.org, https://github.com/r-dbi/dblog
+BugReports: https://github.com/r-dbi/dblog/issues
 Imports: 
     collections (>= 0.1.4),
     DBI,

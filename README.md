@@ -1,17 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# DBIlog
+# dblog
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/DBIlog)](https://cran.r-project.org/package=DBIlog)
+status](https://www.r-pkg.org/badges/version/dblog)](https://cran.r-project.org/package=dblog)
 <!-- badges: end -->
 
-The goal of DBIlog is to implement logging for arbitrary DBI backends,
+The goal of dblog is to implement logging for arbitrary DBI backends,
 similarly to Perl’s [DBI::Log](https://metacpan.org/pod/DBI::Log). This
 is useful for troubleshooting and auditing codes that access a database.
 The initial use case for this package is to help debugging DBItest
@@ -19,18 +19,18 @@ tests.
 
 ## Installation
 
-You can install the released version of DBIlog from
+You can install the released version of dblog from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("DBIlog")
+install.packages("dblog")
 ```
 
 Install the development version from GitHub using
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("r-dbi/DBIlog")
+devtools::install_github("r-dbi/dblog")
 ```
 
 ## Basic example
@@ -38,7 +38,7 @@ devtools::install_github("r-dbi/DBIlog")
 The `LoggingDBI` driver wraps arbitrary drivers:
 
 ``` r
-library(DBIlog)
+library(dblog)
 drv <- LoggingDBI(RSQLite::SQLite())
 #> drv1 <- RSQLite::SQLite()
 ```
@@ -73,7 +73,7 @@ data
 The log is runnable R code\! Run it in a fresh session to repeat the
 operations, step by step or in an otherwise controlled fashion.
 
-DBIlog is smart about DBI objects created or returned, and will assign a
+dblog is smart about DBI objects created or returned, and will assign a
 new variable name to each new object. Cleared results or closed
 connections are not removed automatically.
 
