@@ -2,7 +2,7 @@ make_log_call <- function(obj_name, log_obj) {
   force(obj_name)
   force(log_obj)
 
-  s4_dict <- collections::Stack$new()
+  s4_dict <- collections::Stack()
 
   find_s4_dict <- function(x) {
     all_s4 <- s4_dict$as_list()
@@ -56,7 +56,7 @@ make_log_call <- function(obj_name, log_obj) {
     expr <- quo_get_expr(quo)
     env <- quo_get_env(quo)
 
-    args <- purrr::map(as.list(expr[-1]), ~ eval_tidy(., env))
+    args <- purrr::map(as.list(expr[-1]), ~ eval_tidy(., env = env))
     if (!is.null(obj_name)) {
       args[[1]] <- obj_name
     }
@@ -152,7 +152,7 @@ make_text_logger <- function(path = NULL) {
 #' @export
 #' @rdname get_default_logger
 make_collect_logger <- function() {
-  queue <- collections::Queue$new()
+  queue <- collections::Queue()
 
   make_logger(
     log = function(call, result) {
