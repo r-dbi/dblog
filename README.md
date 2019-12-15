@@ -166,37 +166,6 @@ dbWriteTable(conn, "iris", iris[1:3, ])
 
 src <- dbplyr::src_dbi(conn)
 iris_tbl <- tbl(src, "iris")
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(c(zzz1 = "iris"), class = c("ident", "character"
-#> )))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "zzz1")
-#> ## <SQL> `zzz1`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res1 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris` AS `zzz1`\nWHERE (0 = 1)", class = c("sql", 
 #> "character")))
 #> dbFetch(res1, n = 0)
@@ -206,32 +175,6 @@ iris_tbl <- tbl(src, "iris")
 iris_tbl %>%
   summarize_if(is.numeric, mean)
 #> Applying predicate on the first 100 rows
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res2 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", 
 #> "character")))
 #> dbFetch(res2, n = 100)
@@ -242,104 +185,9 @@ iris_tbl %>%
 #> dbHasCompleted(res2)
 #> ## [1] TRUE
 #> dbClearResult(res2)
-#> dbQuoteIdentifier(conn1, structure("Sepal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Sepal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
 #> Warning: Missing values are always removed in SQL.
 #> Use `mean(x, na.rm = TRUE)` to silence this warning
 #> This warning is displayed only once per session.
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Sepal.Width", class = c("ident", "character")))
-#> ## <SQL> `Sepal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Length", class = c("ident", "character"
-#> )))
-#> ## <SQL> `Petal.Length`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("Petal.Width", class = c("ident", "character")))
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure(character(0), class = c("ident", "character")))
-#> ## <SQL> 
-#> dbQuoteIdentifier(conn1, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"
-#> ))
-#> ## <SQL> `Sepal.Length`
-#> ## <SQL> `Sepal.Width`
-#> ## <SQL> `Petal.Length`
-#> ## <SQL> `Petal.Width`
-#> dbQuoteIdentifier(conn1, c("", "", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, structure("iris", class = c("ident", "character")))
-#> ## <SQL> `iris`
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, "")
-#> ## <SQL> ``
-#> dbQuoteIdentifier(conn1, c("", "", ""))
-#> ## <SQL> ``
-#> ## <SQL> ``
-#> ## <SQL> ``
 #> res3 <- dbSendQuery(conn1, structure("SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`\nFROM `iris`\nLIMIT 11", class = c("sql", 
 #> "character")))
 #> dbFetch(res3, n = -1)
@@ -349,8 +197,54 @@ iris_tbl %>%
 #> ## [1] TRUE
 #> dbClearResult(res3)
 #> # Source:   lazy query [?? x 4]
-#> # Database: LoggingDBIConnection
+#> # Database: sqlite 3.25.3 []
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>          <dbl>       <dbl>        <dbl>       <dbl>
 #> 1         4.90        3.23         1.37         0.2
+```
+
+## Inheritance hierarchy
+
+Despite the common suggestion to [prefer composition over
+inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance),
+the new logging classes are implemented as subclasses of the actual DBI
+classes. Moreover, the class definitions are created on demand: for each
+different database backend, different subclasses are defined, to make
+sure dispatch is routed to the right methods.
+
+The reason for this is that other methods, unknown to this package,
+might dispatch on the DBI class. One such example is *dbplyr* that
+introduces specialized behaviors for many classes. The `explain()`
+method calls the internal `db_explain()` method which uses `EXPLAIN
+QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified
+database connections. Without inheritance, *dbplyr* would use the
+default method. The effect isn’t apparent for RSQLite, but might lead to
+errors for other databases that do not understand `EXPLAIN`.
+
+``` r
+iris_tbl %>%
+  summarize_if(is.numeric, mean) %>% 
+  explain()
+#> Applying predicate on the first 100 rows
+#> res4 <- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", 
+#> "character")))
+#> dbFetch(res4, n = 100)
+#> ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#> ## 1          5.1         3.5          1.4         0.2  setosa
+#> ## 2          4.9         3.0          1.4         0.2  setosa
+#> ## 3          4.7         3.2          1.3         0.2  setosa
+#> dbHasCompleted(res4)
+#> ## [1] TRUE
+#> dbClearResult(res4)
+#> <SQL>
+#> SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`
+#> FROM `iris`
+#> 
+#> <PLAN>
+#> dbGetQuery(conn1, structure("EXPLAIN QUERY PLAN SELECT AVG(`Sepal.Length`) AS `Sepal.Length`, AVG(`Sepal.Width`) AS `Sepal.Width`, AVG(`Petal.Length`) AS `Petal.Length`, AVG(`Petal.Width`) AS `Petal.Width`\nFROM `iris`", class = c("sql", 
+#> "character")))
+#> ##   id parent notused          detail
+#> ## 1  3      0       0 SCAN TABLE iris
+#>   id parent notused          detail
+#> 1  3      0       0 SCAN TABLE iris
 ```

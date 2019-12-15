@@ -22,54 +22,62 @@ LoggingDBI <- function(drv, logger = get_default_logger()) {
   logger$log_call(!! quo)
 }
 
-#' @rdname DBI
-#' @export
-setClass("LoggingDBIDriver", contains = "DBIDriver",
-         slots = list(drv = "DBIDriver", log_call = "function"))
+setClass("LoggingDBIDriver")
 
-#' @rdname DBI
-#' @inheritParams methods::show
-#' @export
-setMethod(
-  "show", "LoggingDBIDriver",
-  function(object) {
-    cat("<LoggingDBIDriver>\n")
-    show(object@drv)
-  })
+make_driver_class <- function(base_class) {
 
-#' @rdname DBI
-#' @inheritParams DBI::dbConnect
-#' @export
-setMethod(
-  "dbConnect", "LoggingDBIDriver",
-  function(drv, ...) {
-    drv@log_call(dbConnect(drv@drv, !!! enquos(...)))
+  template_name <- "LoggingDBIDriver"
+  class_name <- paste0(template_name, "-", base_class)
+  all_base_classes <- c(template_name, base_class)
+
+  if (isClass(class_name)) {
+    return(class_name)
   }
-)
 
-#' @rdname DBI
-#' @inheritParams DBI::dbDataType
-#' @export
-setMethod(
-  "dbDataType", "LoggingDBIDriver",
-  function(dbObj, obj, ...) {
-    dbObj@log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
-  })
+  where <- parent.frame()
 
-#' @rdname DBI
-#' @inheritParams DBI::dbIsValid
-#' @export
-setMethod(
-  "dbIsValid", "LoggingDBIDriver",
-  function(dbObj, ...) {
-    dbObj@log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
-  })
+  setClass <- function(...) {
+    methods::setClass(..., where = where, package = .packageName)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetInfo
-#' @export
-setMethod(
-  "dbGetInfo", "LoggingDBIDriver",
-  function(dbObj, ...) {
-    dbObj@log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
-  })
+  setMethod <- function(...) {
+    methods::setMethod(..., where = where)
+  }
+
+  class <- setClass(class_name,
+    contains = all_base_classes, slots = list(drv = base_class, log_call = "function"))
+
+  setMethod(
+    "show", class_name,
+    function(object) {
+      cat("<LoggingDBIDriver>\n")
+      show(object@drv)
+    })
+
+  setMethod(
+    "dbConnect", class_name,
+    function(drv, ...) {
+      drv@log_call(dbConnect(drv@drv, !!! enquos(...)))
+    }
+  )
+
+  setMethod(
+    "dbDataType", class_name,
+    function(dbObj, obj, ...) {
+      dbObj@log_call(dbDataType(dbObj@drv, obj, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbIsValid", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbIsValid(dbObj@drv, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetInfo", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbGetInfo(dbObj@drv, !!! enquos(...)))
+    })
+
+  class_name
+}

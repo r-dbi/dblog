@@ -1,199 +1,174 @@
 #' @include Driver.R
 NULL
 
-#' @rdname DBI
-#' @export
-setClass(
-  "LoggingDBIConnection",
-  contains = "DBIConnection",
-  slots = list(conn = "DBIConnection", log_call = "function")
-)
-
-#' @rdname DBI
-#' @inheritParams methods::show
-#' @export
-setMethod(
-  "show", "LoggingDBIConnection",
-  function(object) {
-    cat("<LoggingDBIConnection>\n")
-    show(object@conn)
-  })
+setClass("LoggingDBIConnection")
 
 #' @export
 format.LoggingDBIConnection <- function(x, ...) {
   paste0("Logging<", format(x@conn), ">")
 }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbIsValid
-#' @export
-setMethod(
-  "dbIsValid", "LoggingDBIConnection",
-  function(dbObj, ...) {
-    dbObj@log_call(dbIsValid(dbObj@conn, !!! enquos(...)))
-  })
+make_connection_class <- function(base_class) {
 
-#' @rdname DBI
-#' @inheritParams DBI::dbDisconnect
-#' @export
-setMethod(
-  "dbDisconnect", "LoggingDBIConnection",
-  function(conn, ...) {
-    conn@log_call(dbDisconnect(conn@conn, !!! enquos(...)))
-  })
+  template_name <- "LoggingDBIConnection"
+  class_name <- paste0(template_name, "-", base_class)
+  all_base_classes <- c(template_name, base_class)
 
-#' @rdname DBI
-#' @inheritParams DBI::dbSendQuery
-#' @export
-setMethod(
-  "dbSendQuery", c("LoggingDBIConnection", "character"),
-  function(conn, statement, ...) {
-    conn@log_call(dbSendQuery(conn@conn, statement, !!! enquos(...)))
-  })
+  if (isClass(class_name)) {
+    return(class_name)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetQuery
-#' @export
-setMethod(
-  "dbGetQuery", c("LoggingDBIConnection", "character"),
-  function(conn, statement, ...) {
-    conn@log_call(dbGetQuery(conn@conn, statement, !!! enquos(...)))
-  })
+  where <- parent.frame()
 
-#' @rdname DBI
-#' @inheritParams DBI::dbSendStatement
-#' @export
-setMethod(
-  "dbSendStatement", c("LoggingDBIConnection", "character"),
-  function(conn, statement, ...) {
-    conn@log_call(dbSendStatement(conn@conn, statement, !!! enquos(...)))
-  })
+  setClass <- function(...) {
+    methods::setClass(..., where = where, package = .packageName)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbDataType
-#' @export
-setMethod(
-  "dbDataType", "LoggingDBIConnection",
-  function(dbObj, obj, ...) {
-    dbObj@log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
-  })
+  setMethod <- function(...) {
+    methods::setMethod(..., where = where)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbQuoteString
-#' @export
-setMethod(
-  "dbQuoteString", c("LoggingDBIConnection", "character"),
-  function(conn, x, ...) {
-    conn@log_call(dbQuoteString(conn@conn, x, !!! enquos(...)))
-  })
+  class <- setClass(class_name,
+    contains = all_base_classes, slots = list(conn = base_class, log_call = "function"))
 
-#' @rdname DBI
-#' @inheritParams DBI::dbQuoteIdentifier
-#' @export
-setMethod(
-  "dbQuoteIdentifier", c("LoggingDBIConnection", "character"),
-  function(conn, x, ...) {
-    conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
-  })
+  setMethod(
+    "show", class_name,
+    function(object) {
+      cat("<LoggingDBIConnection>\n")
+      show(object@conn)
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbQuoteIdentifier
-setMethod(
-  "dbUnquoteIdentifier", c("LoggingDBIConnection", "SQL"),
-  function(conn, x, ...) {
-    conn@log_call(dbUnquoteIdentifier(conn@conn, x, !!! enquos(...)))
-  })
+  setMethod(
+    "dbIsValid", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbIsValid(dbObj@conn, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbWriteTable
-#' @param overwrite Allow overwriting the destination table. Cannot be
-#'   `TRUE` if `append` is also `TRUE`.
-#' @param append Allow appending to the destination table. Cannot be
-#'   `TRUE` if `overwrite` is also `TRUE`.
-#' @export
-setMethod(
-  "dbWriteTable", c("LoggingDBIConnection", "character", "data.frame"),
-  function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
-    conn@log_call(dbWriteTable(conn@conn, name = name, value = value, overwrite = overwrite, append = append, !!! enquos(...)))
-  })
+  setMethod(
+    "dbDisconnect", class_name,
+    function(conn, ...) {
+      conn@log_call(dbDisconnect(conn@conn, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbReadTable
-#' @export
-setMethod(
-  "dbReadTable", c("LoggingDBIConnection", "character"),
-  function(conn, name, ...) {
-    conn@log_call(dbReadTable(conn@conn, name = name, !!! enquos(...)))
-  })
+  setMethod(
+    "dbSendQuery", c(class_name, "character"),
+    function(conn, statement, ...) {
+      conn@log_call(dbSendQuery(conn@conn, statement, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbListTables
-#' @export
-setMethod(
-  "dbListTables", "LoggingDBIConnection",
-  function(conn, ...) {
-    conn@log_call(dbListTables(conn@conn, !!! enquos(...)))
-  })
+  setMethod(
+    "dbGetQuery", c(class_name, "character"),
+    function(conn, statement, ...) {
+      conn@log_call(dbGetQuery(conn@conn, statement, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbExistsTable
-#' @export
-setMethod(
-  "dbExistsTable", c("LoggingDBIConnection", "character"),
-  function(conn, name, ...) {
-    conn@log_call(dbExistsTable(conn@conn, name, !!! enquos(...)))
-  })
+  setMethod(
+    "dbSendStatement", c(class_name, "character"),
+    function(conn, statement, ...) {
+      conn@log_call(dbSendStatement(conn@conn, statement, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbListFields
-#' @export
-setMethod(
-  "dbListFields", c("LoggingDBIConnection", "character"),
-  function(conn, name, ...) {
-    conn@log_call(dbListFields(conn@conn, name, !!! enquos(...)))
-  })
+  setMethod(
+    "dbDataType", class_name,
+    function(dbObj, obj, ...) {
+      dbObj@log_call(dbDataType(dbObj@conn, obj, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbRemoveTable
-#' @export
-setMethod(
-  "dbRemoveTable", c("LoggingDBIConnection", "character"),
-  function(conn, name, ...) {
-    conn@log_call(dbRemoveTable(conn@conn, name, !!! enquos(...)))
-  })
+  setMethod(
+    "dbQuoteString", c(class_name, "character"),
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteString(conn@conn, x, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetInfo
-#' @export
-setMethod(
-  "dbGetInfo", "LoggingDBIConnection",
-  function(dbObj, ...) {
-    dbObj@log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
-  })
+  setMethod(
+    "dbQuoteIdentifier", class_name,
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbBegin
-#' @export
-setMethod(
-  "dbBegin", "LoggingDBIConnection",
-  function(conn, ...) {
-    conn@log_call(dbBegin(conn@conn, !!! enquos(...)))
-  })
+  setMethod(
+    "dbQuoteIdentifier", c(class_name, "character"),
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbCommit
-#' @export
-setMethod(
-  "dbCommit", "LoggingDBIConnection",
-  function(conn, ...) {
-    conn@log_call(dbCommit(conn@conn, !!! enquos(...)))
-  })
+  setMethod(
+    "dbQuoteIdentifier", c(class_name, "SQL"),
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbRollback
-#' @export
-setMethod(
-  "dbRollback", "LoggingDBIConnection",
-  function(conn, ...) {
-    conn@log_call(dbRollback(conn@conn, !!! enquos(...)))
-  })
+  setMethod(
+    "dbQuoteIdentifier", c(class_name, "Id"),
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbUnquoteIdentifier", class_name,
+    function(conn, x, ...) {
+      conn@log_call(dbUnquoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbWriteTable", c(class_name, "character", "data.frame"),
+    function(conn, name, value, overwrite = FALSE, append = FALSE, ...) {
+      conn@log_call(dbWriteTable(conn@conn, name = name, value = value, overwrite = overwrite, append = append, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbReadTable", c(class_name, "character"),
+    function(conn, name, ...) {
+      conn@log_call(dbReadTable(conn@conn, name = name, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbListTables", class_name,
+    function(conn, ...) {
+      conn@log_call(dbListTables(conn@conn, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbExistsTable", c(class_name, "character"),
+    function(conn, name, ...) {
+      conn@log_call(dbExistsTable(conn@conn, name, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbListFields", c(class_name, "character"),
+    function(conn, name, ...) {
+      conn@log_call(dbListFields(conn@conn, name, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbRemoveTable", c(class_name, "character"),
+    function(conn, name, ...) {
+      conn@log_call(dbRemoveTable(conn@conn, name, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetInfo", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbGetInfo(dbObj@conn, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbBegin", class_name,
+    function(conn, ...) {
+      conn@log_call(dbBegin(conn@conn, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbCommit", class_name,
+    function(conn, ...) {
+      conn@log_call(dbCommit(conn@conn, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbRollback", class_name,
+    function(conn, ...) {
+      conn@log_call(dbRollback(conn@conn, !!! enquos(...)))
+    })
+
+  class_name
+}

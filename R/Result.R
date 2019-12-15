@@ -1,111 +1,98 @@
 #' @include Connection.R
 NULL
 
-#' @rdname DBI
-#' @export
-setClass(
-  "LoggingDBIResult",
-  contains = "DBIResult",
-  slots = list(res = "DBIResult", log_call = "function")
-)
+setClass("LoggingDBIResult")
 
-#' @rdname DBI
-#' @inheritParams methods::show
-#' @export
-setMethod(
-  "show", "LoggingDBIResult",
-  function(object) {
-    cat("<LoggingDBIResult>\n")
-    show(object@res)
-  })
+make_result_class <- function(base_class) {
 
-#' @rdname DBI
-#' @inheritParams DBI::dbClearResult
-#' @export
-setMethod(
-  "dbClearResult", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbClearResult(res@res, !!! enquos(...)))
-  })
+  template_name <- "LoggingDBIResult"
+  class_name <- paste0(template_name, "-", base_class)
+  all_base_classes <- c(template_name, base_class)
 
-#' @rdname DBI
-#' @inheritParams DBI::dbFetch
-#' @export
-setMethod(
-  "dbFetch", "LoggingDBIResult",
-  function(res, n = -1, ...) {
-    res@log_call(dbFetch(res@res, n = n, !!! enquos(...)))
-  })
+  if (isClass(class_name)) {
+    return(class_name)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbHasCompleted
-#' @export
-setMethod(
-  "dbHasCompleted", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbHasCompleted(res@res, !!! enquos(...)))
-  })
+  where <- parent.frame()
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetInfo
-#' @export
-setMethod(
-  "dbGetInfo", "LoggingDBIResult",
-  function(dbObj, ...) {
-    dbObj@log_call(dbGetInfo(dbObj@res, !!! enquos(...)))
-  })
+  setClass <- function(...) {
+    methods::setClass(..., where = where, package = .packageName)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbIsValid
-#' @export
-setMethod(
-  "dbIsValid", "LoggingDBIResult",
-  function(dbObj, ...) {
-    dbObj@log_call(dbIsValid(dbObj@res, !!! enquos(...)))
-  })
+  setMethod <- function(...) {
+    methods::setMethod(..., where = where)
+  }
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetStatement
-#' @export
-setMethod(
-  "dbGetStatement", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbGetStatement(res@res, !!! enquos(...)))
-  })
+  class <- setClass(class_name,
+    contains = all_base_classes, slots = list(res = base_class, log_call = "function"))
 
-#' @rdname DBI
-#' @inheritParams DBI::dbColumnInfo
-#' @export
-setMethod(
-  "dbColumnInfo", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbColumnInfo(res@res, !!! enquos(...)))
-  })
+  setMethod(
+    "show", class_name,
+    function(object) {
+      cat("<LoggingDBIResult>\n")
+      show(object@res)
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetRowCount
-#' @export
-setMethod(
-  "dbGetRowCount", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbGetRowCount(res@res, !!! enquos(...)))
-  })
+  setMethod(
+    "dbClearResult", class_name,
+    function(res, ...) {
+      res@log_call(dbClearResult(res@res, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbGetRowsAffected
-#' @export
-setMethod(
-  "dbGetRowsAffected", "LoggingDBIResult",
-  function(res, ...) {
-    res@log_call(dbGetRowsAffected(res@res, !!! enquos(...)))
-  })
+  setMethod(
+    "dbFetch", class_name,
+    function(res, n = -1, ...) {
+      res@log_call(dbFetch(res@res, n = n, !!! enquos(...)))
+    })
 
-#' @rdname DBI
-#' @inheritParams DBI::dbBind
-#' @export
-setMethod(
-  "dbBind", "LoggingDBIResult",
-  function(res, params, ...) {
-    res@log_call(dbBind(res@res, params, !!! enquos(...)))
-    invisible(res)
-  })
+  setMethod(
+    "dbHasCompleted", class_name,
+    function(res, ...) {
+      res@log_call(dbHasCompleted(res@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetInfo", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbGetInfo(dbObj@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbIsValid", class_name,
+    function(dbObj, ...) {
+      dbObj@log_call(dbIsValid(dbObj@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetStatement", class_name,
+    function(res, ...) {
+      res@log_call(dbGetStatement(res@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbColumnInfo", class_name,
+    function(res, ...) {
+      res@log_call(dbColumnInfo(res@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetRowCount", class_name,
+    function(res, ...) {
+      res@log_call(dbGetRowCount(res@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbGetRowsAffected", class_name,
+    function(res, ...) {
+      res@log_call(dbGetRowsAffected(res@res, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbBind", class_name,
+    function(res, params, ...) {
+      res@log_call(dbBind(res@res, params, !!! enquos(...)))
+      invisible(res)
+    })
+
+  class_name
+}
