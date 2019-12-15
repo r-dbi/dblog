@@ -4,7 +4,7 @@
 #' @name DBI
 NULL
 
-#' LoggingDBI driver
+#' dblog driver
 #'
 #' TBD.
 #'
@@ -15,18 +15,18 @@ NULL
 #' @examples
 #' \dontrun{
 #' #' library(DBI)
-#' RLoggingDBI::LoggingDBI()
+#' Rdblog::dblog()
 #' }
-LoggingDBI <- function(drv, logger = get_default_logger()) {
+dblog <- function(drv, logger = get_default_logger()) {
   quo <- enquo(drv)
   logger$log_call(!! quo)
 }
 
-setClass("LoggingDBIDriver")
+setClass("dblogDriver")
 
 make_driver_class <- function(base_class) {
 
-  template_name <- "LoggingDBIDriver"
+  template_name <- "dblogDriver"
   class_name <- paste0(template_name, "-", base_class)
   all_base_classes <- c(template_name, base_class)
 
@@ -50,7 +50,7 @@ make_driver_class <- function(base_class) {
   setMethod(
     "show", class_name,
     function(object) {
-      cat("<LoggingDBIDriver>\n")
+      cat("<dblogDriver>\n")
       show(object@drv)
     })
 

@@ -35,11 +35,11 @@ devtools::install_github("r-dbi/dblog")
 
 ## Basic example
 
-The `LoggingDBI` driver wraps arbitrary drivers:
+The `dblog` driver wraps arbitrary drivers:
 
 ``` r
 library(dblog)
-drv <- LoggingDBI(RSQLite::SQLite())
+drv <- dblog(RSQLite::SQLite())
 #> drv1 <- RSQLite::SQLite()
 ```
 
@@ -86,7 +86,7 @@ and results after the fact.
 ``` r
 collecting_logger <- make_collect_logger()
 
-drv <- LoggingDBI(RSQLite::SQLite(), logger = collecting_logger)
+drv <- dblog(RSQLite::SQLite(), logger = collecting_logger)
 conn <- dbConnect(drv, file = ":memory:")
 dbWriteTable(conn, "iris", iris[1:3, ])
 data <- dbGetQuery(conn, "SELECT * FROM iris")
@@ -153,7 +153,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 
-drv <- LoggingDBI(RSQLite::SQLite())
+drv <- dblog(RSQLite::SQLite())
 #> drv2 <- RSQLite::SQLite()
 conn <- dbConnect(drv, file = ":memory:")
 #> conn1 <- dbConnect(drv2, file = ":memory:")
@@ -197,7 +197,7 @@ iris_tbl %>%
 #> ## [1] TRUE
 #> dbClearResult(res3)
 #> # Source:   lazy query [?? x 4]
-#> # Database: sqlite 3.25.3 []
+#> # Database: sqlite 3.29.0 []
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>          <dbl>       <dbl>        <dbl>       <dbl>
 #> 1         4.90        3.23         1.37         0.2

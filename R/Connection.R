@@ -1,16 +1,16 @@
 #' @include Driver.R
 NULL
 
-setClass("LoggingDBIConnection")
+setClass("dblogConnection")
 
 #' @export
-format.LoggingDBIConnection <- function(x, ...) {
+format.dblogConnection <- function(x, ...) {
   paste0("Logging<", format(x@conn), ">")
 }
 
 make_connection_class <- function(base_class) {
 
-  template_name <- "LoggingDBIConnection"
+  template_name <- "dblogConnection"
   class_name <- paste0(template_name, "-", base_class)
   all_base_classes <- c(template_name, base_class)
 
@@ -34,7 +34,7 @@ make_connection_class <- function(base_class) {
   setMethod(
     "show", class_name,
     function(object) {
-      cat("<LoggingDBIConnection>\n")
+      cat("<dblogConnection>\n")
       show(object@conn)
     })
 
