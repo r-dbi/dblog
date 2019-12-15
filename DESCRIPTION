@@ -1,7 +1,7 @@
 Package: DBIlog
 Title: Logging for DBI
-Version: 0.0.0.9005
-Date: 2019-02-28
+Version: 0.0.0.9006
+Date: 2019-12-15
 Authors@R: 
     person(given = "Kirill",
            family = "Müller",

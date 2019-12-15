@@ -1,3 +1,9 @@
+# DBIlog 0.0.0.9006
+
+- Dynamic instantiation of S4 classes.
+- Failed calls are wrapped with `try()`.
+
+
 # DBIlog 0.0.0.9005
 
 - Fix logging output to file, add line break.
