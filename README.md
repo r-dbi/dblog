@@ -218,8 +218,8 @@ introduces specialized behaviors for many classes. The `explain()`
 method calls the internal `db_explain()` method which uses `EXPLAIN
 QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified
 database connections. Without inheritance, *dbplyr* would use the
-default method. This might lead to
-errors for other databases that do not understand `EXPLAIN`.
+default method. This might lead to errors for other databases that do
+not understand `EXPLAIN`.
 
 ``` r
 iris_tbl %>%
@@ -248,3 +248,9 @@ iris_tbl %>%
 #>   id parent notused          detail
 #> 1  3      0       0 SCAN TABLE iris
 ```
+
+-----
+
+Please note that the ‘dblog’ project is released with a [Contributor
+Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
+you agree to abide by its terms.
