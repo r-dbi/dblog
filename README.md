@@ -218,7 +218,7 @@ introduces specialized behaviors for many classes. The `explain()`
 method calls the internal `db_explain()` method which uses `EXPLAIN
 QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified
 database connections. Without inheritance, *dbplyr* would use the
-default method. The effect isn’t apparent for RSQLite, but might lead to
+default method. This might lead to
 errors for other databases that do not understand `EXPLAIN`.
 
 ``` r
