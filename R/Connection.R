@@ -81,6 +81,12 @@ make_connection_class <- function(base_class) {
     })
 
   setMethod(
+    "dbQuoteString", c(class_name, "SQL"),
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteString(conn@conn, x, !!! enquos(...)))
+    })
+
+  setMethod(
     "dbQuoteIdentifier", class_name,
     function(conn, x, ...) {
       conn@log_call(dbQuoteIdentifier(conn@conn, x, !!! enquos(...)))
@@ -108,6 +114,12 @@ make_connection_class <- function(base_class) {
     "dbUnquoteIdentifier", class_name,
     function(conn, x, ...) {
       conn@log_call(dbUnquoteIdentifier(conn@conn, x, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbQuoteLiteral", class_name,
+    function(conn, x, ...) {
+      conn@log_call(dbQuoteLiteral(conn@conn, x, !!! enquos(...)))
     })
 
   setMethod(
