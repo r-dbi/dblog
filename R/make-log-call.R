@@ -118,7 +118,7 @@ get_default_logger <- function() {
 }
 
 format_console <- function(call, result, width = 80) {
-  withr::local_options(list(width = width))
+  local_options(width = width)
 
   if (is.null(result)) {
     call <- call("try", call)
@@ -128,7 +128,7 @@ format_console <- function(call, result, width = 80) {
   # list("``" = 1)
   call_fmt <- deparse(call, width.cutoff = width, backtick = FALSE)
   if (isTRUE(result$visible)) {
-    output <- capture.output(print(result$value))
+    output <- utils::capture.output(print(result$value))
     result_fmt <- paste0("## ", output)
   } else {
     result_fmt <- NULL
