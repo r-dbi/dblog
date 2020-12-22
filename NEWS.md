@@ -1,3 +1,8 @@
+# dblog 0.0.0.9008
+
+- New `dblog_cnr()` (#8).
+
+
 # dblog 0.0.0.9007
 
 - Add `display` argument to collecting logger to combine printing and collecting (#7).
