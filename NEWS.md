@@ -1,3 +1,10 @@
+# dblog 0.0.0.9007
+
+- Add `display` argument to collecting logger to combine printing and collecting (#7).
+- Override `dbQuoteString()` for `"SQL"` class.
+- Override `dbQuoteLiteral()`.
+
+
 # dblog 0.0.0.9006
 
 - Dynamic instantiation of S4 classes.
