@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>dblog driver — dblog • dblog</title>
+<title>dblog driver and connector — dblog • dblog</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="dblog driver — dblog" />
+<meta property="og:title" content="dblog driver and connector — dblog" />
 <meta property="og:description" content="TBD." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dblog</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
       </span>
     </div>
 
@@ -105,7 +105,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>dblog driver</h1>
+    <h1>dblog driver and connector</h1>
     <small class="dont-index">Source: <a href='https://github.com/r-dbi/dblog/blob/master/R/Driver.R'><code>R/Driver.R</code></a></small>
     <div class="hidden name"><code>dblog.Rd</code></div>
     </div>
@@ -114,18 +114,24 @@
     <p>TBD.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dblog</span><span class='op'>(</span><span class='va'>drv</span>, logger <span class='op'>=</span> <span class='fu'><a href='get_default_logger.html'>get_default_logger</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>dblog</span><span class='op'>(</span><span class='va'>drv</span>, logger <span class='op'>=</span> <span class='fu'><a href='get_default_logger.html'>get_default_logger</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>dblog_cnr</span><span class='op'>(</span><span class='va'>cnr</span>, logger <span class='op'>=</span> <span class='fu'><a href='get_default_logger.html'>get_default_logger</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>drv</th>
-      <td><p>Driver to be wrapped.</p></td>
+      <td><p>Driver to be wrapped, object of class <a href='https://dbi.r-dbi.org/reference/DBIDriver-class.html'>DBI::DBIDriver</a>.</p></td>
     </tr>
     <tr>
       <th>logger</th>
       <td><p>Logger object, defaults to <code><a href='get_default_logger.html'>get_default_logger()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>cnr</th>
+      <td><p>Connector to be wrapped, object of class <a href='https://dbi.r-dbi.org/reference/DBIConnector-class.html'>DBI::DBIConnector</a>.</p></td>
     </tr>
     </table>
 
