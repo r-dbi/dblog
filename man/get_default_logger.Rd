@@ -10,10 +10,14 @@ get_default_logger()
 
 make_text_logger(path = NULL)
 
-make_collect_logger()
+make_collect_logger(display = FALSE)
 }
 \arguments{
 \item{path}{Passed on to \code{\link[=cat]{cat()}} for the output.  Default: console output.}
+
+\item{display}{\verb{[logical(1)]}\cr
+Set to \code{TRUE} to display log entries in addition to writing
+to a file.}
 }
 \description{
 TBD.
