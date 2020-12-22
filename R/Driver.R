@@ -28,7 +28,7 @@ make_driver_class <- function(base_class) {
 
   template_name <- "dblogDriver"
   class_name <- paste0(template_name, "-", base_class)
-  all_base_classes <- c(template_name, base_class)
+  all_base_classes <- c(template_name, base_class, "DBIDriver")
 
   if (isClass(class_name)) {
     return(class_name)
