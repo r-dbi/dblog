@@ -2,14 +2,19 @@
 % Please edit documentation in R/Driver.R
 \name{dblog}
 \alias{dblog}
-\title{dblog driver}
+\alias{dblog_cnr}
+\title{dblog driver and connector}
 \usage{
 dblog(drv, logger = get_default_logger())
+
+dblog_cnr(cnr, logger = get_default_logger())
 }
 \arguments{
-\item{drv}{Driver to be wrapped.}
+\item{drv}{Driver to be wrapped, object of class \link[DBI:DBIDriver-class]{DBI::DBIDriver}.}
 
 \item{logger}{Logger object, defaults to \code{\link[=get_default_logger]{get_default_logger()}}.}
+
+\item{cnr}{Connector to be wrapped, object of class \link[DBI:DBIConnector-class]{DBI::DBIConnector}.}
 }
 \description{
 TBD.

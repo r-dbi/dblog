@@ -4,12 +4,12 @@
 #' @name DBI
 NULL
 
-#' dblog driver
+#' dblog driver and connector
 #'
 #' TBD.
 #'
 #' @export
-#' @param drv Driver to be wrapped.
+#' @param drv Driver to be wrapped, object of class [DBI::DBIDriver-class].
 #' @param logger Logger object, defaults to [get_default_logger()].
 #' @import methods DBI
 #' @examples
@@ -18,8 +18,20 @@ NULL
 #' Rdblog::dblog()
 #' }
 dblog <- function(drv, logger = get_default_logger()) {
-  quo <- enquo(drv)
+  expr <- gsub(", [)]$", ")", deparse(drv))
+  quo <- parse(text = expr)[[1]]
   logger$log_call(!! quo)
+}
+
+#' @param cnr Connector to be wrapped, object of class [DBI::DBIConnector-class].
+#' @rdname dblog
+#' @export
+dblog_cnr <- function(cnr, logger = get_default_logger()) {
+  new(
+    "DBIConnector",
+    .drv = dblog(cnr@.drv, logger = logger),
+    .conn_args = cnr@.conn_args
+  )
 }
 
 setClass("dblogDriver")
