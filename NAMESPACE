@@ -2,6 +2,7 @@
 
 S3method(format,dblogConnection)
 export(dblog)
+export(dblog_cnr)
 export(get_default_logger)
 export(make_collect_logger)
 export(make_text_logger)
