@@ -67,13 +67,13 @@
   <div class="contents col-md-9">
 <div id="dblog" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#dblog" class="anchor"></a>dblog</h1></div>
+<a href="#dblog" class="anchor" aria-hidden="true"></a>dblog</h1></div>
 <!-- badges: start -->
 
 <p>The goal of dblog is to implement logging for arbitrary DBI backends, similarly to Perl’s <a href="https://metacpan.org/pod/DBI::Log" class="external-link">DBI::Log</a>. This is useful for troubleshooting and auditing codes that access a database. The initial use case for this package is to help debugging DBItest tests.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
 <p>You can install the released version of dblog from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dblog"</span><span class="op">)</span></code></pre></div>
@@ -84,7 +84,7 @@
 </div>
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#basic-example" class="anchor"></a>Basic example</h2>
+<a href="#basic-example" class="anchor" aria-hidden="true"></a>Basic example</h2>
 <p>The <code>dblog</code> driver wraps arbitrary drivers:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dblog.r-dbi.org" class="external-link">dblog</a></span><span class="op">)</span>
@@ -119,7 +119,7 @@
 </div>
 <div id="logging-options" class="section level2">
 <h2 class="hasAnchor">
-<a href="#logging-options" class="anchor"></a>Logging options</h2>
+<a href="#logging-options" class="anchor" aria-hidden="true"></a>Logging options</h2>
 <p>Logging can be redirected to a file, optionally all outputs may be logged as well. For example, use a collecting logger to output all calls and results after the fact.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">collecting_logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_default_logger.html">make_collect_logger</a></span><span class="op">(</span><span class="op">)</span>
@@ -176,7 +176,7 @@
 </div>
 <div id="logging-complex-operations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#logging-complex-operations" class="anchor"></a>Logging complex operations</h2>
+<a href="#logging-complex-operations" class="anchor" aria-hidden="true"></a>Logging complex operations</h2>
 <p>The full power is demonstrated when running with code where the underlying <em>DBI</em> operations are not obvious:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span>
@@ -240,7 +240,7 @@
 </div>
 <div id="inheritance-hierarchy" class="section level2">
 <h2 class="hasAnchor">
-<a href="#inheritance-hierarchy" class="anchor"></a>Inheritance hierarchy</h2>
+<a href="#inheritance-hierarchy" class="anchor" aria-hidden="true"></a>Inheritance hierarchy</h2>
 <p>Despite the common suggestion to <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance" class="external-link">prefer composition over inheritance</a>, the new logging classes are implemented as subclasses of the actual DBI classes. Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined, to make sure dispatch is routed to the right methods.</p>
 <p>The reason for this is that other methods, unknown to this package, might dispatch on the DBI class. One such example is <em>dbplyr</em> that introduces specialized behaviors for many classes. The <code>explain()</code> method calls the internal <code>db_explain()</code> method which uses <code>EXPLAIN QUERY PLAN</code> for SQLite connections but <code>EXPLAIN</code> for unspecified database connections. Without inheritance, <em>dbplyr</em> would use the default method. This might lead to errors for other databases that do not understand <code>EXPLAIN</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">

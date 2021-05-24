@@ -119,61 +119,48 @@
 
     <div id="dblog-0009008" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9008">
-<a href="#dblog-0009008" class="anchor"></a>dblog 0.0.0.9008</h1>
-<ul>
-<li>New <code><a href="../reference/dblog.html">dblog_cnr()</a></code> (<a href='https://github.com/r-dbi/dblog/issues/8'>#8</a>).</li>
-</ul>
-</div>
+<a href="#dblog-0009008" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9008</h1>
+<ul><li>New <code><a href="../reference/dblog.html">dblog_cnr()</a></code> (<a href='https://github.com/r-dbi/dblog/issues/8'>#8</a>).</li>
+</ul></div>
     <div id="dblog-0009007" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9007">
-<a href="#dblog-0009007" class="anchor"></a>dblog 0.0.0.9007</h1>
-<ul>
-<li>Add <code>display</code> argument to collecting logger to combine printing and collecting (<a href='https://github.com/r-dbi/dblog/issues/7'>#7</a>).</li>
+<a href="#dblog-0009007" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9007</h1>
+<ul><li>Add <code>display</code> argument to collecting logger to combine printing and collecting (<a href='https://github.com/r-dbi/dblog/issues/7'>#7</a>).</li>
 <li>Override <code>dbQuoteString()</code> for <code>"SQL"</code> class.</li>
 <li>Override <code>dbQuoteLiteral()</code>.</li>
-</ul>
-</div>
+</ul></div>
     <div id="dblog-0009006" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9006">
-<a href="#dblog-0009006" class="anchor"></a>dblog 0.0.0.9006</h1>
-<ul>
-<li>Dynamic instantiation of S4 classes.</li>
+<a href="#dblog-0009006" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9006</h1>
+<ul><li>Dynamic instantiation of S4 classes.</li>
 <li>Failed calls are wrapped with <code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code>.</li>
-</ul>
-</div>
+</ul></div>
     <div id="dblog-0009005" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9005">
-<a href="#dblog-0009005" class="anchor"></a>dblog 0.0.0.9005</h1>
-<ul>
-<li>Fix logging output to file, add line break.</li>
-<li>Switch to <code><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse(backtick = FALSE)</a></code> to create parseable code.</li>
+<a href="#dblog-0009005" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9005</h1>
+<ul><li>Fix logging output to file, add line break.</li>
+<li>Switch to <code>deparse(backtick = FALSE)</code> to create parseable code.</li>
 <li>Fix error when wrapped DBI method fails.</li>
-</ul>
-</div>
+</ul></div>
     <div id="dblog-0009004" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9004">
-<a href="#dblog-0009004" class="anchor"></a>dblog 0.0.0.9004</h1>
-<ul>
-<li>Same as previous version.</li>
-</ul>
-</div>
+<a href="#dblog-0009004" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9004</h1>
+<ul><li>Same as previous version.</li>
+</ul></div>
     <div id="dblog-0009003" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9003">
-<a href="#dblog-0009003" class="anchor"></a>dblog 0.0.0.9003</h1>
-<ul>
-<li>Support logging of calls to DBIResult.</li>
+<a href="#dblog-0009003" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9003</h1>
+<ul><li>Support logging of calls to DBIResult.</li>
 <li>Remove dependency on evaluate package.</li>
 <li>New <code><a href="../reference/get_default_logger.html">make_text_logger()</a></code>, renamed from <code>make_console_logger()</code>.</li>
 <li>
 <code>make_console_logger()</code> gains <code>path</code> argument, is useful again.</li>
-</ul>
-</div>
+</ul></div>
     <div id="dblog-0009001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9001">
-<a href="#dblog-0009001" class="anchor"></a>dblog 0.0.0.9001</h1>
+<a href="#dblog-0009001" class="anchor" aria-hidden="true"></a>dblog 0.0.0.9001</h1>
 <p>Initial prototype. Exported functions:</p>
-<ul>
-<li>
+<ul><li>
 <code><a href="../reference/dblog.html">dblog()</a></code> wraps an arbitrary DBI driver with a custom logger.</li>
 <li>
 <code><a href="../reference/get_default_logger.html">get_default_logger()</a></code> is the default console logger.</li>
@@ -181,8 +168,7 @@
 <code>make_console_logger()</code> creates a new console logger (for internal use only).</li>
 <li>
 <code><a href="../reference/get_default_logger.html">make_collect_logger()</a></code> creates a new logger that collects logging output and emits all at once.</li>
-</ul>
-</div>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
