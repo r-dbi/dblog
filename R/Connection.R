@@ -153,6 +153,18 @@ make_connection_class <- function(base_class) {
     })
 
   setMethod(
+    "dbCreateTable", c(class_name),
+    function(conn, name, fields, ...) {
+      conn@log_call(dbCreateTable(conn@conn, name = name, fields = fields, !!! enquos(...)))
+    })
+
+  setMethod(
+    "dbAppendTable", c(class_name),
+    function(conn, name, value, ..., row.names = NULL) {
+      conn@log_call(dbAppendTable(conn@conn, name = name, value = value, !!! enquos(...), row.names = row.nams))
+    })
+
+  setMethod(
     "dbRemoveTable", c(class_name, "character"),
     function(conn, name, ...) {
       conn@log_call(dbRemoveTable(conn@conn, name, !!! enquos(...)))
