@@ -18,6 +18,9 @@ NULL
 #' Rdblog::dblog()
 #' }
 dblog <- function(drv, logger = get_default_logger()) {
+  if (is(drv, "duckdb_driver")) {
+    return(logger$log_call(duckdb::duckdb()))
+  }
   expr <- gsub(", [)]$", ")", deparse(drv))
   quo <- parse(text = expr)[[1]]
   logger$log_call(!! quo)
