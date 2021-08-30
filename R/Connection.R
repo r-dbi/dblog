@@ -161,7 +161,7 @@ make_connection_class <- function(base_class) {
   setMethod(
     "dbAppendTable", c(class_name),
     function(conn, name, value, ..., row.names = NULL) {
-      conn@log_call(dbAppendTable(conn@conn, name = name, value = value, !!! enquos(...), row.names = row.nams))
+      conn@log_call(dbAppendTable(conn@conn, name = name, value = value, !!! enquos(...), row.names = row.names))
     })
 
   setMethod(
