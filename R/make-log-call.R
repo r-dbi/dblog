@@ -124,9 +124,7 @@ format_console <- function(call, result, width = 80) {
     call <- call("try", call)
   }
 
-  # backtick = FALSE gives better results in some edge cases, like
-  # list("``" = 1)
-  call_fmt <- deparse(call, width.cutoff = width, backtick = FALSE)
+  call_fmt <- safe_deparse(call, width.cutoff = width)
   if (isTRUE(result$visible)) {
     output <- utils::capture.output(print(result$value))
     result_fmt <- paste0("## ", output)
