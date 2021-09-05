@@ -21,11 +21,12 @@ Imports:
     rlang
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1.9000
+RoxygenNote: 7.1.1.9001
 Collate: 
     'Driver.R'
     'Connection.R'
     'Result.R'
+    'deparse.R'
     'import.R'
     'make-log-call.R'
 Suggests: 
