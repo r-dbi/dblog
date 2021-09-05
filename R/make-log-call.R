@@ -124,7 +124,7 @@ format_console <- function(call, result, width = 80) {
     call <- call("try", call)
   }
 
-  call_fmt <- safe_deparse(call, width.cutoff = width)
+  call_fmt <- safe_deparse(call, width = width)
   if (isTRUE(result$visible)) {
     output <- utils::capture.output(print(result$value))
     result_fmt <- paste0("## ", output)
