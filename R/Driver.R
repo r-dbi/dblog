@@ -19,7 +19,9 @@ NULL
 #' }
 dblog <- function(drv, logger = get_default_logger()) {
   if (is(drv, "duckdb_driver")) {
-    return(logger$log_call(duckdb::duckdb()))
+    # duckdb::duckdb()
+    # Avoid suggesting package
+    return(logger$log_call(!! new_call(call("::", sym("duckdb"), sym("duckdb")))))
   }
   expr <- gsub(", [)]$", ")", deparse(drv))
   quo <- parse(text = expr)[[1]]
