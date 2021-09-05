@@ -15,7 +15,6 @@ BugReports: https://github.com/r-dbi/dblog/issues
 Imports: 
     collections (>= 0.1.4),
     DBI,
-    duckdb,
     glue,
     methods,
     purrr,
