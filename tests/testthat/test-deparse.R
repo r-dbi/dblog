@@ -1,8 +1,10 @@
 test_that("output", {
-  expect_snapshot({
-    safe_deparse(list(foo = "bar"))
-    safe_deparse(list("\n" = 1))
-    safe_deparse(list("\\n" = 1))
-    safe_deparse(rlang::set_names(list(1), ""))
-  })
+  # Can't use expect_snapshot() because it uses deparse() itself
+
+  expect_deparse(list(foo = "bar"))
+  expect_deparse(list("\n" = 1))
+  expect_deparse(list("\\n" = 1))
+  expect_deparse(quote(list("\n" = 1)))
+  expect_deparse(quote(list("\\n" = 1)))
+  expect_deparse(rlang::set_names(list(1), ""))
 })

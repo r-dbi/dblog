@@ -14,3 +14,11 @@ safe_deparse <- function(x, width = getOption("width")) {
     control = c("keepNA", "keepInteger", "showAttributes")
   ))
 }
+
+expect_deparse <- function(x) {
+  if (is.call(x)) {
+    testthat::expect_identical(parse(text = safe_deparse(x))[[1]], x)
+  } else {
+    testthat::expect_identical(eval(parse(text = safe_deparse(x))[[1]]), x)
+  }
+}
