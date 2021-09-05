@@ -28,3 +28,6 @@ Collate:
     'Result.R'
     'import.R'
     'make-log-call.R'
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
