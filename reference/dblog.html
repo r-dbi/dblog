@@ -44,7 +44,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>dblog driver and connector</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-dbi/dblog/blob/master/R/Driver.R" class="external-link"><code>R/Driver.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-dbi/dblog/blob/HEAD/R/Driver.R" class="external-link"><code>R/Driver.R</code></a></small>
     <div class="hidden name"><code>dblog.Rd</code></div>
     </div>
 
@@ -52,24 +52,25 @@
     <p>TBD.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">dblog</span><span class="op">(</span><span class="va">drv</span>, logger <span class="op">=</span> <span class="fu"><a href="get_default_logger.html">get_default_logger</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dblog</span><span class="op">(</span><span class="va">drv</span>, logger <span class="op">=</span> <span class="fu"><a href="get_default_logger.html">get_default_logger</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu">dblog_cnr</span><span class="op">(</span><span class="va">cnr</span>, logger <span class="op">=</span> <span class="fu"><a href="get_default_logger.html">get_default_logger</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-
-    <div id="ref-sections">
-    <div id="arguments">
-    <h2>Arguments</h2>
-    
-
-<dl><dt>drv</dt><dd><p>Driver to be wrapped, object of class <a href="https://dbi.r-dbi.org/reference/DBIDriver-class.html" class="external-link">DBI::DBIDriver</a>.</p></dd>
-</dl><dl><dt>logger</dt><dd><p>Logger object, defaults to <code><a href="get_default_logger.html">get_default_logger()</a></code>.</p></dd>
-</dl><dl><dt>cnr</dt><dd><p>Connector to be wrapped, object of class <a href="https://dbi.r-dbi.org/reference/DBIConnector-class.html" class="external-link">DBI::DBIConnector</a>.</p></dd>
-</dl></div>
     </div>
 
-    <div id="examples">
+    <div id="arguments">
+    <h2>Arguments</h2>
+    <dl><dt>drv</dt>
+<dd><p>Driver to be wrapped, object of class <a href="https://dbi.r-dbi.org/reference/DBIDriver-class.html" class="external-link">DBI::DBIDriver</a>.</p></dd>
+<dt>logger</dt>
+<dd><p>Logger object, defaults to <code><a href="get_default_logger.html">get_default_logger()</a></code>.</p></dd>
+<dt>cnr</dt>
+<dd><p>Connector to be wrapped, object of class <a href="https://dbi.r-dbi.org/reference/DBIConnector-class.html" class="external-link">DBI::DBIConnector</a>.</p></dd>
+</dl></div>
+
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="co">#' library(DBI)</span></span>
 <span class="r-in"><span class="fu">Rdblog</span><span class="fu">::</span><span class="fu">dblog</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
@@ -87,7 +88,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
 </div>
 
       </footer></div>
