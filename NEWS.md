@@ -1,3 +1,28 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# dblog 0.0.0.9009
+
+- Harmonize yaml formatting.
+
+- Revert changes to matrix section.
+
+- Reduce parallelism.
+
+- Also check dev on cran-* branches.
+
+- Update hash key for dev.
+
+- Remove R 3.3.
+
+- Merge pull request #12 from r-dbi/f-safe-deparse.
+
+- Work around problems with names containing backslashes in `deparse()` (#12).
+
+- Work around duckdb storing external pointers in the driver object.
+
+- Add dbCreateTable() and dbAppendTable() methods.
+
+
 # dblog 0.0.0.9008
 
 - New `dblog_cnr()` (#8).
