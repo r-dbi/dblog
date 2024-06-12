@@ -12,7 +12,7 @@ make_connection_class <- function(base_class) {
 
   template_name <- "dblogConnection"
   class_name <- paste0(template_name, "-", base_class)
-  all_base_classes <- c(template_name, base_class)
+  all_base_classes <- c(template_name, base_class, "DBIConnection")
 
   if (isClass(class_name)) {
     return(class_name)
