@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Logging for DBI • dblog</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dblog</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9013</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
 <li>
   <a href="https://github.com/r-dbi/dblog/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -61,7 +61,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
@@ -201,15 +201,15 @@
 <span><span class="co">#&gt;     append = FALSE)</span></span>
 <span></span>
 <span><span class="va">src</span> <span class="op">&lt;-</span> <span class="fu">dbplyr</span><span class="fu">::</span><span class="fu">src_dbi</span><span class="op">(</span><span class="va">conn</span><span class="op">)</span></span>
-<span><span class="va">iris_tbl</span> <span class="op">&lt;-</span> <span class="fu">tbl</span><span class="op">(</span><span class="va">src</span>, <span class="st">"iris"</span><span class="op">)</span></span>
+<span><span class="va">iris_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">src</span>, <span class="st">"iris"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; res1 &lt;- dbSendQuery(conn1, structure("SELECT *\nFROM `iris` AS `zzz1`\nWHERE (0 = 1)", class = c("sql", </span></span>
 <span><span class="co">#&gt; "character")))</span></span>
 <span><span class="co">#&gt; dbFetch(res1, n = 0)</span></span>
 <span><span class="co">#&gt; ## [1] Sepal.Length Sepal.Width  Petal.Length Petal.Width  Species     </span></span>
 <span><span class="co">#&gt; ## &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="co">#&gt; dbClearResult(res1)</span></span>
-<span><span class="va">iris_tbl</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">summarize_if</span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">iris_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html" class="external-link">summarize_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Applying predicate on the first 100 rows</span></span>
 <span><span class="co">#&gt; res2 &lt;- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", </span></span>
 <span><span class="co">#&gt; "character")))</span></span>
@@ -242,11 +242,11 @@
 <h2 id="inheritance-hierarchy">Inheritance hierarchy<a class="anchor" aria-label="anchor" href="#inheritance-hierarchy"></a>
 </h2>
 <p>Despite the common suggestion to <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance" class="external-link">prefer composition over inheritance</a>, the new logging classes are implemented as subclasses of the actual DBI classes. Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined, to make sure dispatch is routed to the right methods.</p>
-<p>The reason for this is that other methods, unknown to this package, might dispatch on the DBI class. One such example is <em>dbplyr</em> that introduces specialized behaviors for many classes. The <code>explain()</code> method calls the internal <code>db_explain()</code> method which uses <code>EXPLAIN QUERY PLAN</code> for SQLite connections but <code>EXPLAIN</code> for unspecified database connections. Without inheritance, <em>dbplyr</em> would use the default method. This might lead to errors for other databases that do not understand <code>EXPLAIN</code>.</p>
+<p>The reason for this is that other methods, unknown to this package, might dispatch on the DBI class. One such example is <em>dbplyr</em> that introduces specialized behaviors for many classes. The <code><a href="https://dplyr.tidyverse.org/reference/explain.html" class="external-link">explain()</a></code> method calls the internal <code><a href="https://dplyr.tidyverse.org/reference/backend_dbplyr.html" class="external-link">db_explain()</a></code> method which uses <code>EXPLAIN QUERY PLAN</code> for SQLite connections but <code>EXPLAIN</code> for unspecified database connections. Without inheritance, <em>dbplyr</em> would use the default method. This might lead to errors for other databases that do not understand <code>EXPLAIN</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">iris_tbl</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">summarize_if</span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">mean</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">explain</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">iris_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html" class="external-link">summarize_if</a></span><span class="op">(</span><span class="va">is.numeric</span>, <span class="va">mean</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/explain.html" class="external-link">explain</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Applying predicate on the first 100 rows</span></span>
 <span><span class="co">#&gt; res4 &lt;- dbSendQuery(conn1, structure("SELECT *\nFROM `iris`\nLIMIT 100", class = c("sql", </span></span>
 <span><span class="co">#&gt; "character")))</span></span>
@@ -331,16 +331,16 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
