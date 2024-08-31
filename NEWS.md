@@ -1,5 +1,52 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9014
+
+## Chore
+
+  - Auto-update from GitHub Actions.
+    
+    Run: https://github.com/r-dbi/dblog/actions/runs/10425482998
+
+  - Auto-update from GitHub Actions.
+    
+    Run: https://github.com/r-dbi/dblog/actions/runs/10200110967
+
+  - Auto-update from GitHub Actions.
+    
+    Run: https://github.com/r-dbi/dblog/actions/runs/9728444611
+
+  - Auto-update from GitHub Actions.
+    
+    Run: https://github.com/r-dbi/dblog/actions/runs/9691619402
+
+## Continuous integration
+
+  - Install local package for pkgdown builds.
+
+  - Improve support for protected branches with fledge.
+
+  - Improve support for protected branches, without fledge.
+
+  - Sync with latest developments.
+
+  - Use v2 instead of master.
+
+  - Inline action.
+
+  - Use dev roxygen2 and decor.
+
+  - Fix on Windows, tweak lock workflow.
+
+  - Avoid checking bashisms on Windows.
+
+  - Better commit message.
+
+  - Bump versions, better default, consume custom matrix.
+
+  - Recent updates.
+
+
 # dblog 0.0.0.9013
 
 - Internal changes only.
