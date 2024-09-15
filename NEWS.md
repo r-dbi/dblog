@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9015
+
+## Continuous integration
+
+  - Install via R CMD INSTALL ., not pak (#14).
+    
+      - ci: Install via R CMD INSTALL ., not pak
+    
+      - ci: Bump version of upload-artifact action
+
+
 # dblog 0.0.0.9014
 
 ## Chore
