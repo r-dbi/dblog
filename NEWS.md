@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9016
+
+## Continuous integration
+
+  - Trigger run (#16).
+
+  - Use pkgdown branch (#15).
+    
+      - ci: Use pkgdown branch
+    
+      - ci: Updates from duckdb
+
+
 # dblog 0.0.0.9015
 
 ## Continuous integration
