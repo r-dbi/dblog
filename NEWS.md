@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9017
+
+## Continuous integration
+
+  - Trigger run (#17).
+    
+      - ci: Trigger run
+    
+      - ci: Latest changes
+
+
 # dblog 0.0.0.9016
 
 ## Continuous integration
