@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9018
+
+## Continuous integration
+
+  - Use stable pak (#18).
+
+
 # dblog 0.0.0.9017
 
 ## Continuous integration
