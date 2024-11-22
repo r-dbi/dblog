@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9019
+
+## Continuous integration
+
+  - Correctly detect branch protection (#19).
+
+
 # dblog 0.0.0.9018
 
 ## Continuous integration
