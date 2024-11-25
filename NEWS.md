@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9020
+
+## Continuous integration
+
+- Need to install R on Ubuntu 24.04 (#22).
+
+- Trigger run (#16).
+
+- Use Ubuntu 24.04 and styler PR (#20).
+
+
 # dblog 0.0.0.9019
 
 ## Continuous integration
