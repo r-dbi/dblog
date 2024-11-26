@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9021
+
+## Continuous integration
+
+- Use styler from main branch (#23).
+
+
 # dblog 0.0.0.9020
 
 ## Continuous integration
