@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9022
+
+## Continuous integration
+
+- Explicit permissions (#24).
+
+
 # dblog 0.0.0.9021
 
 ## Continuous integration
