@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9023
+
+## Continuous integration
+
+- Ignore errors when removing pkg-config on macOS (#25).
+
+
 # dblog 0.0.0.9022
 
 ## Continuous integration
