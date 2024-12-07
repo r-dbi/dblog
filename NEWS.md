@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9024
+
+## Continuous integration
+
+- Use larger retry count for lock-threads workflow (#26).
+
+
 # dblog 0.0.0.9023
 
 ## Continuous integration
