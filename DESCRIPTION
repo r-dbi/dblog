@@ -1,7 +1,7 @@
 Package: dblog
 Title: Logging for DBI
-Version: 0.0.0.9025
-Date: 2024-12-08
+Version: 0.0.0.9026
+Date: 2024-12-09
 Authors@R: 
     person(given = "Kirill",
            family = "Müller",

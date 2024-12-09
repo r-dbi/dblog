@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9026
+
+## Continuous integration
+
+- Avoid failure in fledge workflow if no changes (#28).
+
+
 # dblog 0.0.0.9025
 
 ## Continuous integration
