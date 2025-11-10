@@ -1,5 +1,48 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9027
+
+## Chore
+
+- Auto-update from GitHub Actions.
+
+  Run: https://github.com/r-dbi/dblog/actions/runs/17451415476
+
+- Auto-update from GitHub Actions.
+
+  Run: https://github.com/r-dbi/dblog/actions/runs/14636222154
+
+## Continuous integration
+
+- Use workflows for fledge (#42).
+
+- Sync (#41).
+
+- Use reviewdog for external PRs (#40).
+
+- Cleanup and fix macOS (#39).
+
+- Format with air, check detritus, better handling of `extra-packages` (#38).
+
+- Enhance permissions for workflow (#37).
+
+- Permissions, better tests for missing suggests, lints (#36).
+
+- Only fail covr builds if token is given (#35).
+
+- Always use `_R_CHECK_FORCE_SUGGESTS_=false` (#34).
+
+- Correct installation of xml2 (#33).
+
+- Explain (#32).
+
+- Add xml2 for covr, print testthat results (#31).
+
+- Fix (#30).
+
+- Sync (#29).
+
+
 # dblog 0.0.0.9026
 
 ## Continuous integration
