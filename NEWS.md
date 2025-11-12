@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9028
+
+## Continuous integration
+
+- Fix reviewdog and add commenting workflow (#43).
+
+
 # dblog 0.0.0.9027
 
 ## Chore
