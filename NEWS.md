@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9029
+
+## Continuous integration
+
+- Install binaries from r-universe for dev workflow (#44).
+
+
 # dblog 0.0.0.9028
 
 ## Continuous integration
