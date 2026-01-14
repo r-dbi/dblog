@@ -1,5 +1,16 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9030
+
+## Continuous integration
+
+- Fix comment (#47).
+
+- Tweaks (#46).
+
+- Test all R versions on branches that start with cran- (#45).
+
+
 # dblog 0.0.0.9029
 
 ## Continuous integration
