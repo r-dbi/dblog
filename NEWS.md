@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9040
+
+## Continuous integration
+
+- Lock down `format-suggest` egress (audit → block).
+
+
 # dblog 0.0.0.9039
 
 ## Bug fixes
