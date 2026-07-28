@@ -1,5 +1,14 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9041
+
+- Ci: Run all smoke-test checks even when one fails (#97).
+
+- Ci: Apply matrix `env` vars in the workflow, not in custom actions (#95).
+
+- Ci: Link the responsible workflow run in snapshot update PRs (#96).
+
+
 # dblog 0.0.0.9040
 
 ## Continuous integration
