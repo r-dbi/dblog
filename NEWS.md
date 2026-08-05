@@ -1,5 +1,26 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9042
+
+## Chore
+
+- Auto-update from GitHub Actions.
+
+  Run: https://github.com/r-dbi/dblog/actions/runs/30974892596
+
+## Continuous integration
+
+- Remove unused pr-commands workflow.
+
+## Uncategorized
+
+- Ci: Give every workflow and job an explicit `permissions` block (#103).
+
+- Ci: Pass workflow context through the environment, not into script text (#102).
+
+- Ci: Add a Windows arm64 (`windows-11-arm`) check on R-release (#99).
+
+
 # dblog 0.0.0.9041
 
 - Ci: Run all smoke-test checks even when one fails (#97).
