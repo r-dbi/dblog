@@ -16,8 +16,7 @@ make_collect_logger(display = FALSE)
 \item{path}{Passed on to \code{\link[=cat]{cat()}} for the output.  Default: console output.}
 
 \item{display}{\verb{[logical(1)]}\cr
-Set to \code{TRUE} to display log entries in addition to writing
-to a file.}
+Set to \code{TRUE} to display log entries in addition to writing to a file.}
 }
 \description{
 TBD.
