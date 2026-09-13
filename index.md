@@ -199,12 +199,15 @@ iris_tbl %>%
 
 ## Inheritance hierarchy
 
-Despite the common suggestion to [prefer composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance), the new logging classes are implemented as subclasses of the actual DBI classes.
-Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined, to make sure dispatch is routed to the right methods.
+Despite the common suggestion to [prefer composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance),
+the new logging classes are implemented as subclasses of the actual DBI classes.
+Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined,
+to make sure dispatch is routed to the right methods.
 
 The reason for this is that other methods, unknown to this package, might dispatch on the DBI class.
 One such example is *dbplyr* that introduces specialized behaviors for many classes.
-The `explain()` method calls the internal `db_explain()` method which uses `EXPLAIN QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified database connections.
+The `explain()` method calls the internal `db_explain()` method
+which uses `EXPLAIN QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified database connections.
 Without inheritance, *dbplyr* would use the default method.
 This might lead to errors for other databases that do not understand `EXPLAIN`.
 

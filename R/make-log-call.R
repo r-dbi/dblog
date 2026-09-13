@@ -153,8 +153,7 @@ make_text_logger <- function(path = NULL) {
 #' @export
 #' @rdname get_default_logger
 #' @param display `[logical(1)]`\cr
-#'   Set to `TRUE` to display log entries in addition to writing
-#'   to a file.
+#'   Set to `TRUE` to display log entries in addition to writing to a file.
 make_collect_logger <- function(display = FALSE) {
   queue <- collections::Queue()
   force(display)
