@@ -3,9 +3,8 @@ output: cynkratemplate::readme_document
 ---
 
 <!-- README.md and index.md are generated from README.Rmd.
-     Edit that file and render it the usual way: rmarkdown::render(),
-     devtools::build_readme(), or the Knit button. The cynkratemplate
-     package must be installed; it supplies the output format. -->
+     Edit that file and render it the usual way: rmarkdown::render(), devtools::build_readme(), or the Knit button.
+     The cynkratemplate package must be installed; it supplies the output format. -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -118,12 +117,15 @@ iris_tbl %>%
 
 ## Inheritance hierarchy
 
-Despite the common suggestion to [prefer composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance), the new logging classes are implemented as subclasses of the actual DBI classes.
-Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined, to make sure dispatch is routed to the right methods.
+Despite the common suggestion to [prefer composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance),
+the new logging classes are implemented as subclasses of the actual DBI classes.
+Moreover, the class definitions are created on demand: for each different database backend, different subclasses are defined,
+to make sure dispatch is routed to the right methods.
 
 The reason for this is that other methods, unknown to this package, might dispatch on the DBI class.
 One such example is _dbplyr_ that introduces specialized behaviors for many classes.
-The `explain()` method calls the internal `db_explain()` method which uses `EXPLAIN QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified database connections.
+The `explain()` method calls the internal `db_explain()` method
+which uses `EXPLAIN QUERY PLAN` for SQLite connections but `EXPLAIN` for unspecified database connections.
 Without inheritance, _dbplyr_ would use the default method.
 This might lead to errors for other databases that do not understand `EXPLAIN`.
 
@@ -135,6 +137,5 @@ iris_tbl %>%
 
 ---
 
-Please note that the 'dblog' project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+Please note that the 'dblog' project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
