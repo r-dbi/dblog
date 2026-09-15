@@ -1,5 +1,14 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9048
+
+## Documentation
+
+- Break lines at meaning boundaries (#49).
+
+- Harmonize README and pkgdown front page rendering (#48).
+
+
 # dblog 0.0.0.9047
 
 ## Chore
