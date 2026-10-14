@@ -15,6 +15,25 @@ The goal of dblog is to implement logging for arbitrary DBI backends, similarly 
 This is useful for troubleshooting and auditing codes that access a database.
 The initial use case for this package is to help debugging DBItest tests.
 
+## Goals and non-goals
+
+dblog aims to:
+
+- log every DBI call made through a wrapped driver, for any backend, without the calling code knowing about it
+- write that log as runnable R code, so a session can be replayed step by step in a fresh session
+- give each connection, result and other DBI object a variable name as it appears, so the log reads like a script
+- let the log go where you need it: to the console, to a file with `make_text_logger()`,
+  or into memory with `make_collect_logger()`, which can also record the return values
+- keep dispatch intact by subclassing the real DBI classes,
+  so packages such as dbplyr still find their backend-specific methods
+
+It is explicitly not trying to:
+
+- be a database driver: `dblog()` wraps a driver you pass in, and every call is forwarded to it
+- change what the backend does: the log records the calls, it does not rewrite or suppress them
+- tidy up after you: cleared results and closed connections are not removed from the log automatically
+- manage log files: a logger is a plain object you supply, and rotation, filtering and retention are left to the caller
+
 ## Installation
 
 You can install the released version of dblog from [CRAN](https://CRAN.R-project.org) with:
