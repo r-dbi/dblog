@@ -7,7 +7,7 @@ make_result_class <- function(base_class) {
 
   template_name <- "dblogResult"
   class_name <- paste0(template_name, "-", base_class)
-  all_base_classes <- c(template_name, base_class)
+  all_base_classes <- c(template_name, base_class, "DBIResult")
 
   if (isClass(class_name)) {
     return(class_name)
