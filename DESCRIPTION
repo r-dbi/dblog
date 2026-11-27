@@ -3,10 +3,7 @@ Title: Logging for DBI
 Version: 0.0.0.9052
 Date: 2026-11-27
 Authors@R: 
-    person(given = "Kirill",
-           family = "Müller",
-           role = c("aut", "cre"),
-           email = "krlmlr+r@mailbox.org",
+    person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1416-3412"))
 Description: Provides logging of DBI methods for arbitrary backends.
 License: GPL-3
@@ -19,6 +16,11 @@ Imports:
     methods,
     purrr,
     rlang
+Suggests: 
+    testthat (>= 3.0.0)
+Config/Needs/readme: RSQLite, dplyr, dbplyr, evaluate
+Config/roxygen2/version: 8.1.1.9000
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Collate: 
@@ -28,8 +30,3 @@ Collate:
     'deparse.R'
     'import.R'
     'make-log-call.R'
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
-Config/roxygen2/version: 8.1.1.9000
-Config/Needs/readme: RSQLite, dplyr, dbplyr, evaluate
