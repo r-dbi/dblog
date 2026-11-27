@@ -189,7 +189,7 @@ iris_tbl %>%
 #> ## [1] TRUE
 #> dbClearResult(res2)
 #> # A query:  ?? x 4
-#> # Database: sqlite 3.53.4 []
+#> # Database: sqlite 3.53.3 []
 #>   Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>          <dbl>       <dbl>        <dbl>       <dbl>
 #> 1          4.9        3.23         1.37         0.2
