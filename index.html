@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dblog</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9049</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9051</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@
 <p>The <code>dblog</code> driver wraps arbitrary drivers:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dblog.r-dbi.org" class="external-link">dblog</a></span><span class="op">)</span></span>
-<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu">SQLite</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; drv1 &lt;- new("SQLiteDriver")</span></span></code></pre></div>
 <p>All calls to DBI methods are logged, by default to the console.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -123,7 +123,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collecting_logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_default_logger.html">make_collect_logger</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu">SQLite</span><span class="op">(</span><span class="op">)</span>, logger <span class="op">=</span> <span class="va">collecting_logger</span><span class="op">)</span></span>
+<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span>, logger <span class="op">=</span> <span class="va">collecting_logger</span><span class="op">)</span></span>
 <span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu">dbConnect</span><span class="op">(</span><span class="va">drv</span>, file <span class="op">=</span> <span class="st">":memory:"</span><span class="op">)</span></span>
 <span><span class="fu">dbWriteTable</span><span class="op">(</span><span class="va">conn</span>, <span class="st">"iris"</span>, <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">dbGetQuery</span><span class="op">(</span><span class="va">conn</span>, <span class="st">"SELECT * FROM iris"</span><span class="op">)</span></span>
@@ -188,7 +188,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
-<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu">SQLite</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">drv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dblog.html">dblog</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; drv2 &lt;- new("SQLiteDriver")</span></span>
 <span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu">dbConnect</span><span class="op">(</span><span class="va">drv</span>, file <span class="op">=</span> <span class="st">":memory:"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; conn1 &lt;- dbConnect(drv2, file = ":memory:")</span></span>
@@ -199,7 +199,7 @@
 <span><span class="co">#&gt; "Petal.Length", "Petal.Width", "Species"), row.names = c(NA, 3L), class = "data.frame"), </span></span>
 <span><span class="co">#&gt;     overwrite = FALSE, append = FALSE)</span></span>
 <span></span>
-<span><span class="va">src</span> <span class="op">&lt;-</span> <span class="fu">dbplyr</span><span class="fu">::</span><span class="fu">src_dbi</span><span class="op">(</span><span class="va">conn</span><span class="op">)</span></span>
+<span><span class="va">src</span> <span class="op">&lt;-</span> <span class="fu">dbplyr</span><span class="fu">::</span><span class="fu"><a href="https://dbplyr.tidyverse.org/reference/src_dbi.html" class="external-link">src_dbi</a></span><span class="op">(</span><span class="va">conn</span><span class="op">)</span></span>
 <span><span class="va">iris_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">src</span>, <span class="st">"iris"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; dbGetQuery(conn1, structure("SELECT *\nFROM `iris` AS `q01`\nWHERE (0 = 1)", class = c("sql", </span></span>
 <span><span class="co">#&gt; "character")))</span></span>
@@ -230,7 +230,7 @@
 <span><span class="co">#&gt; ## [1] TRUE</span></span>
 <span><span class="co">#&gt; dbClearResult(res2)</span></span>
 <span><span class="co">#&gt; # A query:  ?? x 4</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.53.4 []</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.53.3 []</span></span>
 <span><span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
 <span><span class="co">#&gt;          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1          4.9        3.23         1.37         0.2</span></span></code></pre></div>
