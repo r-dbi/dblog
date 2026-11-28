@@ -1,5 +1,12 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# dblog 0.0.0.9053
+
+## Chore
+
+- Tidy DESCRIPTION with usethis::use_tidy_description() (#54).
+
+
 # dblog 0.0.0.9052
 
 ## Continuous integration
